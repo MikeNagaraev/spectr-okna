@@ -1,0 +1,23 @@
+.main-site {
+    .section {
+        padding: 20px 0;
+
+        &-container {
+            width: 100%;
+
+            &-cards {}
+        }
+    }
+
+    .header-section {
+        width: 100%;
+
+        h2 {
+            font-size: 1.2rem;
+        }
+    }
+
+    .shadow {
+        background: $yellow;
+    }
+}

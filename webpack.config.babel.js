@@ -1,11 +1,81 @@
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const jsOutputPath = 'js/app.js';
 const cssOutputPath = 'css/app.min.css';
 
 const ExtractSASS = new ExtractTextPlugin(cssOutputPath);
+
+const loaders = [
+  {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['env'],
+        plugins: [
+            'transform-runtime',
+            'transform-object-rest-spread'
+        ],
+      },
+    },
+  },
+  {
+    test: /\.(sass|scss)$/,
+    include: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, 'src/sass'),
+    ],
+    use: ExtractSASS.extract({
+      use: [
+        {
+          loader: "css-loader",
+          options: {
+            sourceMap: true,
+            minimize: true,
+          }
+        },
+        {
+          loader: "sass-loader",
+          options: {
+            sourceMap: true
+          }
+        }
+      ],
+      fallback: "style-loader"
+    }),
+  },
+  {
+    test: /\.css$/,
+    include: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, 'src/sass'),
+    ],
+    use: [
+      'style-loader',
+      'css-loader'
+    ]
+  },
+  {
+    test: /\.(eot|svg|ttf|woff|woff2)$/,
+    loader: 'url-loader?name=static/fonts/Roboto/[name].[ext]'
+  },
+  {
+    test: /\.(jpe?g|png|gif|svg)$/i,
+    use: [
+      {
+        loader: "url-loader",
+        options: {
+          limit: 100000,
+          name: "static/images/[name].[ext]"
+        }
+      }
+    ]
+  }
+]
 
 export default {
   entry: [
@@ -27,62 +97,17 @@ export default {
     port: 3000,
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env'],
-            plugins: [
-                'transform-runtime',
-                'transform-object-rest-spread'
-            ],
-          },
-        },
-      },
-      {
-        test: /\.(sass|scss)$/,
-        include: [
-          path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'src/sass'),
-        ],
-        use: ExtractSASS.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: true,
-                minimize: true,
-              }
-            },
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true
-              }
-            }
-          ],
-          fallback: "style-loader"
-        }),
-      },{
-        test: /\.css$/,
-        include: [
-          path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'src/sass'),
-        ],
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-    ],
+    loaders
   },
   plugins: [
     new ExtractTextPlugin(path.resolve(__dirname, `public/${cssOutputPath}`), {
         allChunks: true,
     }),
     ExtractSASS,
+    new CopyWebpackPlugin(
+        [
+            {from: './static/images/', to: './images/'}
+        ]
+    ),
   ],
 };
