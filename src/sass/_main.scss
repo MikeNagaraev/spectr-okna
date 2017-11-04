@@ -4,8 +4,38 @@
 
         &-container {
             width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            
+            &-cards {
+                display: flex;
+                flex-flow: row wrap;
+                width: 100%;
 
-            &-cards {}
+                .card-item {
+                    margin: 10px;
+                    background: red;
+                    height: 250px;
+                    flex: 1 30%;
+
+                    &--long {
+                        flex: 1 45%;
+                    }
+                }
+            }
+
+            .attributes {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+                
+                &-item {
+                    margin: 10px;
+                    background: green;
+                    height: 100px;
+                    flex: 1 30%;
+                }
+            }
         }
     }
 
