@@ -34,7 +34,7 @@
     "type": "git",
     "url": "git+https://github.com/MikhailLU/spectr-okna.git"
   },
-  "author": "Mikhail Nagaraev & Nikita Kolokoltsev",
+  "author": "Mikhail Nagaraev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MikhailLU/spectr-okna/issues"
