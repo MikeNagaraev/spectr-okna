@@ -6,13 +6,14 @@
             width: 100%;
             display: flex;
             flex-flow: row wrap;
-            
+
             &-cards {
                 display: flex;
                 flex-flow: row wrap;
                 width: 100%;
 
                 .card-item {
+                    cursor: pointer;
                     margin: 10px;
                     background: red;
                     height: 250px;
@@ -22,13 +23,29 @@
                         flex: 1 45%;
                     }
                 }
+
+                .card-item:nth-child(2n+1) {
+                    background: $red;
+
+                    &:hover {
+                        background: darken($red, 5%);
+                    }
+                }
+
+                .card-item:nth-child(2n) {
+                    background: $blue;
+
+                    &:hover {
+                        background: darken($blue, 5%);
+                    }
+                }
             }
 
             .attributes {
                 width: 100%;
                 display: flex;
                 flex-flow: row wrap;
-                
+
                 &-item {
                     margin: 10px;
                     background: green;
@@ -41,9 +58,25 @@
 
     .header-section {
         width: 100%;
+        margin-top: 30px;
+        border-bottom: 1px solid #b9b9b9;
+        margin-bottom: 20px;
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
 
         h2 {
-            font-size: 1.2rem;
+            margin-left: 26px;
+            float: left;
+            color: #00a1be;
+            border-bottom: 1px solid #f0626e;
+            font-size: 2rem;
+            margin: 0;
+            display: inline-block;
+            position: absolute;
+            bottom: -1px;
+            left: 20px;
+            font-weight: lighter;
         }
     }
 

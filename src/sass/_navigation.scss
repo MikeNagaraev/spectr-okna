@@ -1,8 +1,30 @@
+$navigation-height: 60px;
+
 .navigation-site {
-    width: 100%;
     display: flex;
+    flex-flow: row;
+    background: $blue;
+    padding: 0 100px;
 
     div {
+        height: $navigation-height;
         flex: 1;
+    }
+
+    a {
+      text-align: center;
+      line-height: $navigation-height;
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      font-size: 1.4rem;
+      color: $white;
+      font-weight: 500;
+
+      &:hover {
+        background: $main-color;
+        color: $red;
+      }
     }
 }
