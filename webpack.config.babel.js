@@ -60,8 +60,8 @@ const loaders = [
     ]
   },
   {
-    test: /\.(eot|svg|ttf|woff|woff2)$/,
-    loader: 'url-loader?name=static/fonts/Roboto/[name].[ext]'
+    test: /\.(eot|svg|ttf)$/,
+    loader: 'url-loader?name=static/fonts/**/[name].[ext]'
   },
   {
     test: /\.(jpe?g|png|gif|svg)$/i,
@@ -100,14 +100,14 @@ export default {
     loaders
   },
   plugins: [
+    new CopyWebpackPlugin(
+      [
+        {from: './static/images/', to: './images/'}
+      ]
+    ),
     new ExtractTextPlugin(path.resolve(__dirname, `public/${cssOutputPath}`), {
         allChunks: true,
     }),
     ExtractSASS,
-    new CopyWebpackPlugin(
-        [
-            {from: './static/images/', to: './images/'}
-        ]
-    ),
   ],
 };

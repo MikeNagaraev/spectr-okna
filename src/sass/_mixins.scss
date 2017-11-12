@@ -20,7 +20,7 @@
   }
 }
 
-@mixin font-face($name, $path, $weight: normal, $style: normal, $exts: woff2 woff ttf) {
+@mixin font-face($name, $path, $weight: normal, $style: normal, $exts: ttf) {
   $src: null;
 
   $extmods: (

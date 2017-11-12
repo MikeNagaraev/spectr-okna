@@ -1,4 +1,8 @@
+$card-item-height: 350px;
+
 .main-site {
+    margin-top: 20px;
+
     .section {
         padding: 20px 0;
 
@@ -13,32 +17,81 @@
                 width: 100%;
 
                 .card-item {
-                    cursor: pointer;
+                    overflow: hidden;
                     margin: 10px;
-                    background: red;
-                    height: 250px;
+                    min-height: $card-item-height;
                     flex: 1 30%;
+                    border: 1px solid #dddddd;
+                    box-sizing: border-box;
+                    position: relative;
 
                     &--long {
+                        height: $card-item-height + 50px;
                         flex: 1 45%;
+
+                        .img-wrapper {
+                            height: $card-item-height - 50px !important;
+                        }
+                    }
+
+                    &-name {
+                        padding-left: 20px;
+                        margin: 15px 0;
+
+                        a {
+                            color: $black;
+                            font-size: 1.6rem;
+                            font-family: Comfortaa;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+
+                    &-price {
+                        padding-left: 20px;
+                        margin: 7px 0;
+                        font-size: 1.2rem;
+                    }
+
+                    &-info {
+                        margin: 0;
+                        padding: 0 0 0 20px;
+                        color: $red;
+                        font-size: 1.2rem;
+                    }
+
+                    .img-wrapper {
+                        position: relative;
+                        overflow: hidden;
+                        width: 100%;
+                        height: $card-item-height - 100px;
+
+                        &:hover img {
+                            filter: none;
+                            transform: scale(1.3);
+                        }
+                    }
+
+                    .img-shadow {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        background: rgba($black, 0.2);
+                    }
+
+                    img {
+                        border: 1px solid transparent;
+                        width: 100%;
+                        height: 100%;
+                        transition: all 0.8s ease;
                     }
                 }
 
-                .card-item:nth-child(2n+1) {
-                    background: $red;
+                .card-item:nth-child(2n+1) {}
 
-                    &:hover {
-                        background: darken($red, 5%);
-                    }
-                }
-
-                .card-item:nth-child(2n) {
-                    background: $blue;
-
-                    &:hover {
-                        background: darken($blue, 5%);
-                    }
-                }
+                .card-item:nth-child(2n) {}
             }
 
             .attributes {
@@ -48,10 +101,19 @@
 
                 &-item {
                     margin: 10px;
-                    background: green;
                     height: 100px;
                     flex: 1 30%;
                 }
+            }
+        }
+
+        .catalog {}
+
+        .liders {}
+
+        .we-offer {
+            div, p {
+              width: 100%;
             }
         }
     }
@@ -68,19 +130,19 @@
         h2 {
             margin-left: 26px;
             float: left;
-            color: #00a1be;
-            border-bottom: 1px solid #f0626e;
+            color: $blue;
+            border-bottom: 1px solid $red;
             font-size: 2rem;
             margin: 0;
             display: inline-block;
             position: absolute;
             bottom: -1px;
             left: 20px;
-            font-weight: lighter;
+            font-weight: 400;
         }
     }
 
     .shadow {
-        background: $yellow;
+
     }
 }

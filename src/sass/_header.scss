@@ -1,13 +1,13 @@
 $header-height: 80px;
 $logo-size: $header-height;
-$header-background: #f6f6f6;
 
 .header-site {
     width: 100%;
     display: flex;
     height: $header-height;
     margin: 20px 0;
-    background: $header-background;
+    background: $grey;
+    background: linear-gradient(to right, rgba($grey, 0.7), $grey);
     overflow: hidden;
 
     div {
@@ -29,9 +29,17 @@ $header-background: #f6f6f6;
     &-name {
         flex: 1;
         text-align: center;
+        line-height: $header-height;
 
         h1 {
-            font-family: Roboto cursive;
+            height: $header-height;
+            width: 100%;
+            margin: 0;
+            color: $black;
+            font-family: GiveYouGlory;
+            font-weight: lighter;
+            font-size: 3.5rem;
+            text-shadow: 0 1px 0 #000000;
         }
     }
 
@@ -39,11 +47,19 @@ $header-background: #f6f6f6;
         flex: 2;
         display: flex;
         flex-flow: row;
+        font-family: Comfortaa;
+
+        .root-page {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
 
         div {
             height: $header-height;
             flex: 1;
-            border: 1px solid #ededed;
+            border: 1px solid $grey;
         }
 
         div:nth-child(2n) {
@@ -69,9 +85,8 @@ $header-background: #f6f6f6;
             width: 100%;
             height: 100%;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: $white;
-            font-style: italic;
             font-weight: 500;
         }
     }
