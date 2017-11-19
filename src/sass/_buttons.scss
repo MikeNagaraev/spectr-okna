@@ -3,10 +3,16 @@ $button-width: 230px;
 $button-color-yellow: #FFE400;
 
 .button {
-    height: 30px;
-    width: 230px;
-    font-size: 1.4rem;
-    line-height: 30px;
+    width: 75%;
+    height: 1.4 * $button-height;
+    line-height: 1.4 * $button-height;
+    font-size: 2rem;
+    @include respond-to(tablet) {
+        height: $button-height;
+        width: $button-width;
+        font-size: 1.4rem;
+        line-height: $button-height;
+    }
 
     &-order {
         box-shadow: 0 2px 0 rgba(0,0,0,0.3);
@@ -18,8 +24,8 @@ $button-color-yellow: #FFE400;
         cursor: pointer;
 
         &:hover {
-          background: darken($button-color-yellow, 5%);
-          box-shadow: none;
+            background: darken($button-color-yellow, 5%);
+            box-shadow: none;
         }
     }
 }

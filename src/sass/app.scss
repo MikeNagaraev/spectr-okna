@@ -24,7 +24,12 @@ body {
 
 .wrapper {
     margin: auto;
-    width: 50%;
+    width: 100%;
+
+    @include respond-to(tablet) {
+        margin: auto;
+        width: 60%;
+    }
 }
 
 .rainbow {

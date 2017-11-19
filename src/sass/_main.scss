@@ -1,31 +1,49 @@
 @import 'main_about_us';
-
 $card-item-height: 350px;
 
 .main-site {
-    margin-top: 20px;
+    @include respond-to(tablet) {
+        margin-top: 20px;
+    }
 
     .section {
-        padding: 20px 0;
+        @include respond-to(tablet) {
+            padding: 20px 0;
+        }
 
         &-container {
-            width: 100%;
+            flex-flow: column;
             display: flex;
-            flex-flow: row wrap;
+            @include respond-to(tablet) {
+                width: 100%;
+                flex-flow: row wrap;
+            }
 
             &-cards {
+                flex-flow: column;
                 display: flex;
-                flex-flow: row wrap;
+                box-sizing: border-box;
+                padding: 10px;
                 width: 100%;
+
+                @include respond-to(tablet) {
+                    flex-flow: row wrap;
+                    width: 100%;
+                    padding: 0;
+                }
 
                 .card-item {
                     overflow: hidden;
-                    margin: 10px;
                     min-height: $card-item-height;
                     flex: 1 30%;
                     border: 1px solid #dddddd;
                     box-sizing: border-box;
                     position: relative;
+                    margin-bottom: 10px;
+
+                    @include respond-to(tablet) {
+                      margin: 10px;
+                    }
 
                     &--long {
                         height: $card-item-height + 50px;
@@ -114,37 +132,49 @@ $card-item-height: 350px;
         .liders {}
 
         .we-offer {
-            div, p {
-              width: 100%;
+            div,
+            p {
+                width: 100%;
+            }
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 1.7rem;
+            @include respond-to(tablet) {
+                font-size: 1.2rem;
             }
         }
     }
 
     .header-section {
         width: 100%;
-        margin-top: 30px;
         border-bottom: 1px solid #b9b9b9;
         margin-bottom: 20px;
         display: inline-block;
         position: relative;
         box-sizing: border-box;
+        margin-top: 60px;
+
+        @include respond-to(tablet) {
+          margin-top: 30px;
+        }
 
         h2 {
             margin-left: 26px;
             float: left;
             color: $blue;
             border-bottom: 1px solid $red;
-            font-size: 2rem;
             margin: 0;
             display: inline-block;
             position: absolute;
             bottom: -1px;
             left: 20px;
             font-weight: 400;
+            font-size: 2.5rem;
+            @include respond-to(tablet) {
+                font-size: 2rem;
+            }
         }
     }
 
-    .shadow {
-
-    }
+    .shadow {}
 }
