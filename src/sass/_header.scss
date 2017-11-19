@@ -1,28 +1,72 @@
 $header-height: 80px;
-$logo-size: $header-height;
+$logo-size: 100px;
 
 .header-site {
     width: 100%;
     display: flex;
-    height: $header-height;
-    margin: 20px 0;
-    background: $grey;
-    background: linear-gradient(to right, rgba($grey, 0.7), $grey);
+    min-height: $header-height;
+    max-height: 2 * $header-height;
     overflow: hidden;
+    margin: 20px 0 0;
 
-    div {
+    & > div {
+        flex: 1;
+    }
+
+    .root-page {
+        display: block;
+        width: 100%;
         height: 100%;
+        cursor: pointer;
     }
 
     &-logo {
-        width: 2 * $logo-size;
-        height: $logo-size;
-        background: $main-color;
+        height: 100%;
         text-align: center;
 
         img {
-            width: 1.4 * $logo-size;
-            height: $logo-size;
+            height: 2 * $logo-size;
+        }
+    }
+
+    &-time {
+        p {
+            padding-top: 20px;
+            margin: 5px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        .work-time {
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+    }
+
+    &-contacts {
+        text-align: center;
+
+        &-container {
+            padding-top: 20px;
+            margin: 5px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .phone-number-container {
+            display: inline-block;
+            margin-top: 5px;
+
+            span {
+                vertical-align: middle;
+            }
+
+            .phone-number {
+                font-weight: 600;
+                font-size: 1.5rem;
+            }
         }
     }
 
@@ -48,13 +92,6 @@ $logo-size: $header-height;
         display: flex;
         flex-flow: row;
         font-family: Comfortaa;
-
-        .root-page {
-            display: block;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
 
         div {
             height: $header-height;

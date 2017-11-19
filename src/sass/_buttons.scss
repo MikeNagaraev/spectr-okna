@@ -1,0 +1,25 @@
+$button-height: 30px;
+$button-width: 230px;
+$button-color-yellow: #FFE400;
+
+.button {
+    height: 30px;
+    width: 230px;
+    font-size: 1.4rem;
+    line-height: 30px;
+
+    &-order {
+        box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+        border-width: 0;
+        border-color: transparent;
+        background-color: $button-color-yellow;
+        border-radius: 4px;
+        padding-bottom: 9px;
+        cursor: pointer;
+
+        &:hover {
+          background: darken($button-color-yellow, 5%);
+          box-shadow: none;
+        }
+    }
+}

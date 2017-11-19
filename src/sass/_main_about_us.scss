@@ -1,0 +1,49 @@
+.about-us {
+    .banner {
+        text-align: center;
+
+        h2 {
+            margin: 0 0 10px;
+            display: inline-block;
+            font-weight: 500;
+            font-family: cursive;
+            font-size: 2.5rem;
+            border-bottom: 2px solid $red;
+        }
+    }
+
+    &-features {
+        width: 100%;
+
+        &-list {
+            list-style: none;
+            margin: auto;
+            display: flex;
+            flex-flow: row wrap;
+            padding: 0;
+
+            li {
+                flex: 1 30%;
+                margin: 20px;
+                position: relative;
+                font-size: 1.5rem;
+                font-weight: bold;
+
+                span {
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+
+
+                // &::before {
+                //     content: '\f111';
+                //     font-family: FontAwesome;
+                //     position: relative;
+                //     color: $blue;
+                //     top: -3px;
+                //     font-size: 0.7rem;
+                // }
+            }
+        }
+    }
+}
