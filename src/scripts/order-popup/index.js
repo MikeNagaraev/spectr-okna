@@ -1,5 +1,6 @@
 import $ from "jquery";
-import content from './content.json';
+import content from "./content.json";
+import sendEmail from "../message/message";
 
 function initClose() {
     $("#order-popup-close").on("click", () => {
@@ -81,7 +82,54 @@ function initContent() {
     initInfo();
 }
 
-function initBottom() {}
+function initBottom() {
+    $("#order-popup-button").on("click", onSendEmail);
+}
+
+function getProductInfo() {
+    let lines = $(".order-popup-content-body-line");
+    let productInfo = {
+        data: []
+    };
+
+    $.each(lines, (index, item) => {
+        let nameLine = $(item).find(".order-popup-content-body-line-name").html();
+        let valueLine = $(item).find(".order-popup-content-body-line-value");
+
+        let valueLineOptions = $(valueLine).find(".order-popup-content-body-line-value-item");
+
+        let chosenOptions;
+
+        $.each(valueLineOptions, (i, val) => {
+            let selectedOption = $(val).find("input:checked");
+            if (selectedOption.length) {
+                chosenOptions = $(val).find("label").html();
+            }
+        });
+
+        productInfo.data.push({name: nameLine, value: chosenOptions});
+    });
+
+    return productInfo;
+}
+
+function getClientInfo() {
+    return {
+      "number": $("#number").val(),
+      "phone": $("#phone").val(),
+      "contact": $("#contact").val()
+    };
+}
+
+
+function onSendEmail() {
+    let message = {
+        "product": getProductInfo(),
+        "client": getClientInfo()
+    };
+
+    sendEmail(message);
+}
 
 function initOrder() {
     initClose();

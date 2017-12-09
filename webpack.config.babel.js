@@ -13,7 +13,6 @@ const distPath = path.resolve(__dirname, 'dist');
 const scriptsRoot = path.resolve(scriptsPath, 'app.js');
 const stylesRoot = path.resolve(stylesPath, 'app.scss');
 
-
 const loaders = [
     {
         test: /\.js$/,
@@ -56,6 +55,9 @@ const loaders = [
     }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url-loader?name=static/images/[name].[ext]'
+    }, {
+        test: /\.json$/,
+        loader: 'json-loader'
     }
 ]
 
@@ -81,19 +83,23 @@ export default function() {
         module: {
             loaders
         },
+        node: {
+            console: true,
+            fs: 'empty',
+            net: 'empty',
+            tls: 'empty'
+        },
         plugins: [
             new CopyWebpackPlugin([
                 {
                     from: './static/images/',
                     to: './images/'
-                },
-                {
+                }, {
                     from: './index.html',
                     to: 'index.html'
-                },
-                {
-                  from: './font-awesome',
-                  to: './font-awesome'
+                }, {
+                    from: './font-awesome',
+                    to: './font-awesome'
                 }
             ]),
             new ExtractTextPlugin('css/app.min.css'),

@@ -515,7 +515,7 @@
         <div class="order-popup-window">
             <div class="order-popup-header">
                 <div class="order-popup-close" id="order-popup-close">
-                  X
+                    X
                 </div>
             </div>
             <div class="order-popup-content">
@@ -528,12 +528,18 @@
                 </div>
             </div>
             <div class="order-popup-bottom">
-                <button class="order-popup-button button-order">Купить карниз</button>
+                <button class="order-popup-button button-order" id="order-popup-button">Купить карниз</button>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("user_MpY9e3kuFF5GAw4dftnoG");
+       })();
+    </script>
 </body>
 
 </html>
