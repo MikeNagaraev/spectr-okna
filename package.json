@@ -27,8 +27,8 @@
     "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
-    "server": "./node_modules/.bin/webpack-dev-server",
-    "watch": "./node_modules/.bin/webpack"
+    "server": "rimraf 'dist' && webpack-dev-server --progress --profile --colors",
+    "watch": "webpack"
   },
   "repository": {
     "type": "git",

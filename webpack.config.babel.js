@@ -3,107 +3,102 @@ import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
-const jsOutputPath = 'js/app.js';
-const cssOutputPath = 'css/app.min.css';
+const appPath = path.resolve(__dirname, 'src');
+const nodePath = path.resolve(__dirname, 'node_modules');
+const scriptsPath = path.resolve(appPath, 'scripts');
+const stylesPath = path.resolve(appPath, 'styles');
 
-const ExtractSASS = new ExtractTextPlugin(cssOutputPath);
+const distPath = path.resolve(__dirname, 'dist');
+
+const scriptsRoot = path.resolve(scriptsPath, 'app.js');
+const stylesRoot = path.resolve(stylesPath, 'app.scss');
+
 
 const loaders = [
-  {
-    test: /\.js$/,
-    exclude: /(node_modules)/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['env'],
-        plugins: [
-            'transform-runtime',
-            'transform-object-rest-spread'
+    {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['env']
+            }
+        }
+    }, {
+        test: /\.(sass|scss)$/,
+        exclude: [nodePath],
+        include: [
+            nodePath, stylesPath
         ],
-      },
-    },
-  },
-  {
-    test: /\.(sass|scss)$/,
-    include: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'src/sass'),
-    ],
-    use: ExtractSASS.extract({
-      use: [
-        {
-          loader: "css-loader",
-          options: {
-            minimize: true,
-          }
-        },
-        {
-          loader: "sass-loader"
-        }
-      ],
-      fallback: "style-loader"
-    }),
-  },
-  {
-    test: /\.css$/,
-    include: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'src/sass'),
-    ],
-    use: [
-      'style-loader',
-      'css-loader'
-    ]
-  },
-  {
-    test: /\.(eot|svg|ttf)$/,
-    loader: 'url-loader?name=static/fonts/**/[name].[ext]'
-  },
-  {
-    test: /\.(jpe?g|png|gif|svg)$/i,
-    use: [
-      {
-        loader: "url-loader",
-        options: {
-          limit: 100000,
-          name: "static/images/[name].[ext]"
-        }
-      }
-    ]
-  }
+        use: ExtractTextPlugin.extract({
+            use: [
+                {
+                    loader: "css-loader",
+                    options: {
+                        minimize: true
+                    }
+                }, {
+                    loader: "sass-loader"
+                }
+            ],
+            fallback: "style-loader"
+        })
+    }, {
+        test: /\.css$/,
+        exclude: [nodePath],
+        include: [
+            nodePath, stylesPath
+        ],
+        use: ['style-loader', 'css-loader']
+    }, {
+        test: /\.(eot|svg|ttf)$/,
+        loader: 'url-loader?name=static/fonts/**/[name].[ext]'
+    }, {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url-loader?name=static/images/[name].[ext]'
+    }
 ]
 
-export default {
-  entry: [
-    './src/es6/app.js',
-    './src/sass/app.scss',
-  ],
-  output: {
-      path: path.resolve(__dirname, 'public'),
-      filename: jsOutputPath,
-  },
-  resolve: {
-    extensions: ['.js', '.scss', '.css']
-  },
-  devtool: 'source-map',
-  watch: true,
-  devServer: {
-    contentBase: __dirname,
-    compress: true,
-    port: 3000,
-  },
-  module: {
-    loaders
-  },
-  plugins: [
-    new CopyWebpackPlugin(
-      [
-        {from: './static/images/', to: './images/'}
-      ]
-    ),
-    new ExtractTextPlugin(path.resolve(__dirname, `public/${cssOutputPath}`), {
-        allChunks: true,
-    }),
-    ExtractSASS,
-  ],
+export default function() {
+    const config = {
+        entry: [
+            scriptsRoot, stylesRoot
+        ],
+        output: {
+            path: distPath,
+            filename: 'js/app.js'
+        },
+        resolve: {
+            extensions: ['.js', '.scss', '.css']
+        },
+        watch: true,
+        devtool: 'source-map',
+        devServer: {
+            contentBase: distPath,
+            compress: true,
+            port: 3000
+        },
+        module: {
+            loaders
+        },
+        plugins: [
+            new CopyWebpackPlugin([
+                {
+                    from: './static/images/',
+                    to: './images/'
+                },
+                {
+                    from: './index.html',
+                    to: 'index.html'
+                },
+                {
+                  from: './font-awesome',
+                  to: './font-awesome'
+                }
+            ]),
+            new ExtractTextPlugin('css/app.min.css'),
+            // new webpack.optimize.UglifyJsPlugin()
+        ]
+    };
+    return config;
 };

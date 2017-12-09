@@ -1,0 +1,181 @@
+@import 'main_about_us';
+$card-item-height: 350px;
+
+.main-site {
+    @include respond-to(tablet) {
+        margin-top: 20px;
+    }
+
+    .section {
+        @include respond-to(tablet) {
+            padding: 20px 0;
+        }
+
+        &-container {
+            flex-flow: column;
+            display: flex;
+            @include respond-to(tablet) {
+                width: 100%;
+                flex-flow: row wrap;
+            }
+
+            &-cards {
+                flex-flow: column;
+                display: flex;
+                box-sizing: border-box;
+                padding: 10px;
+                width: 100%;
+
+                @include respond-to(tablet) {
+                    flex-flow: row wrap;
+                    width: 100%;
+                    padding: 0;
+                }
+
+                .card-item {
+                    overflow: hidden;
+                    min-height: $card-item-height;
+                    flex: 1 30%;
+                    border: 1px solid #dddddd;
+                    box-sizing: border-box;
+                    position: relative;
+                    margin-bottom: 10px;
+
+                    @include respond-to(tablet) {
+                      margin: 10px;
+                    }
+
+                    &--long {
+                        height: $card-item-height + 50px;
+                        flex: 1 45%;
+
+                        .img-wrapper {
+                            height: $card-item-height - 50px !important;
+                        }
+                    }
+
+                    &-name {
+                        padding-left: 20px;
+                        margin: 15px 0;
+
+                        a {
+                            color: $black;
+                            font-size: 1.6rem;
+                            // font-family: Comfortaa;
+                            font-family: TrebuchetMS, Tahoma, Arial, sans-serif;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+
+                    &-price {
+                        padding-left: 20px;
+                        margin: 7px 0;
+                        font-size: 1.2rem;
+                    }
+
+                    &-info {
+                        margin: 0;
+                        padding: 0 0 0 20px;
+                        color: $red;
+                        font-size: 1.2rem;
+                    }
+
+                    .img-wrapper {
+                        position: relative;
+                        overflow: hidden;
+                        width: 100%;
+                        height: $card-item-height - 100px;
+
+                        &:hover img {
+                            filter: none;
+                            transform: scale(1.3);
+                        }
+                    }
+
+                    .img-shadow {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        background: rgba($black, 0.2);
+                    }
+
+                    img {
+                        border: 1px solid transparent;
+                        width: 100%;
+                        height: 100%;
+                        transition: all 0.8s ease;
+                    }
+                }
+
+                .card-item:nth-child(2n+1) {}
+
+                .card-item:nth-child(2n) {}
+            }
+
+            .attributes {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+
+                &-item {
+                    margin: 10px;
+                    height: 100px;
+                    flex: 1 30%;
+                }
+            }
+        }
+
+        .catalog {}
+
+        .liders {}
+
+        .we-offer {
+            div,
+            p {
+                width: 100%;
+            }
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 1.7rem;
+            @include respond-to(tablet) {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .header-section {
+        width: 100%;
+        border-bottom: 1px solid #b9b9b9;
+        margin-bottom: 20px;
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        margin-top: 60px;
+
+        @include respond-to(tablet) {
+          margin-top: 30px;
+        }
+
+        h2 {
+            margin-left: 26px;
+            float: left;
+            color: $blue;
+            border-bottom: 1px solid $red;
+            margin: 0;
+            display: inline-block;
+            position: absolute;
+            bottom: -1px;
+            left: 20px;
+            font-weight: 400;
+            font-size: 2.5rem;
+            @include respond-to(tablet) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .shadow {}
+}
