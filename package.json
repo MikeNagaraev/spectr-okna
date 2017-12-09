@@ -30,7 +30,8 @@
   },
   "scripts": {
     "server": "rimraf 'dist' && webpack-dev-server --progress --profile --colors",
-    "watch": "webpack"
+    "watch": "webpack",
+    "build": "webpack --config webpack.config.production.babel.js"
   },
   "repository": {
     "type": "git",
