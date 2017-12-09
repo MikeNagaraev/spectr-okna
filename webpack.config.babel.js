@@ -95,8 +95,8 @@ export default function() {
                     from: './static/images/',
                     to: './images/'
                 }, {
-                    from: './index.html',
-                    to: 'index.html'
+                    // from: './index.html',
+                    // to: 'index.html'
                 }, {
                     from: './font-awesome',
                     to: './font-awesome'
