@@ -528,7 +528,14 @@
                 </div>
             </div>
             <div class="order-popup-bottom">
-                <button class="order-popup-button button-order" id="order-popup-button">Купить карниз</button>
+                <button class="order-popup-button button-order" id="order-popup-button">
+                  <span>
+                    Купить карниз
+                  </span>
+                  <div class="icon icon-loader" id="icon-order-loader">
+                    <img src="/dist/images/icons/loader.gif" alt="">
+                  </div>
+                </button>
             </div>
         </div>
     </div>
@@ -536,9 +543,9 @@
     <script type="text/javascript" src="dist/js/app.js"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="text/javascript">
-       (function(){
-          emailjs.init("user_MpY9e3kuFF5GAw4dftnoG");
-       })();
+        (function() {
+            emailjs.init("user_MpY9e3kuFF5GAw4dftnoG");
+        })();
     </script>
 </body>
 

@@ -1,15 +1,30 @@
+import $ from "jquery";
+
+function showLoader() {
+    $("#icon-order-loader").css({"display": "inline-block"});
+}
+
+function hideLoader() {
+    $("#icon-order-loader").hide();
+}
+
+function showOkayMessage() {
+    
+}
+
 export default function(message) {
-    // Change to your service ID, or keep using the default service
-    var service_id = "default_service";
-    var template_id = "spectrokna";
+    const service_id = "default_service";
+    const template_id = "spectrokna";
 
-    console.log(message)
-    console.log(message.toString())
-    emailjs.send('gmail', 'spectrokna', {
-        message: message
-    }).then(function(msg) {
-        console.log(msg)
-    }, function(err) {
+    showLoader();
 
+    emailjs.send('gmail', 'spectrokna', {message: message})
+    .then((response) => {
+        if (response.status == 200) {
+            hideLoader();
+            $(".order-popup").hide();
+        }
+    }, (err) => {
+      console.log(err)
     });
 };
