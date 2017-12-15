@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10327,275 +10327,10 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-module.exports = __webpack_require__(6);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
-var _orderPopup = __webpack_require__(3);var _orderPopup2 = _interopRequireDefault(_orderPopup);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-
-function showOrderPopup() {
-    (0, _jquery2.default)(".order-popup").show();
-    (0, _orderPopup2.default)();
-}
-
-(0, _jquery2.default)("#button-order").on("click", showOrderPopup);
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
-var _content = __webpack_require__(4);var _content2 = _interopRequireDefault(_content);
-var _message = __webpack_require__(5);var _message2 = _interopRequireDefault(_message);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-function initClose() {
-    (0, _jquery2.default)("#order-popup-close").on("click", function () {
-        (0, _jquery2.default)(".order-popup").hide();
-    });
-}
-
-function initTitle() {
-    (0, _jquery2.default)(".order-popup-content-title h2").html(_content2.default.title);
-}
-
-function initBody() {
-    var bodyData = _content2.default.body;
-
-    var container = (0, _jquery2.default)(".order-popup-content-body .container");
-
-    container.html("");
-
-    bodyData.forEach(function (item, index) {
-        var line = (0, _jquery2.default)('<div class="order-popup-content-body-line"></div>');
-        var lineNameElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-name"></div>');
-        var lineValueElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-value"></div>');
-
-        var lineNameElementData = item.name;
-        var lineValueElementData = item.value;
-
-        lineValueElementData.forEach(function (value, valueIndex) {
-            var singleValueElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-value-item"></div>');
-            var id = index + '' + valueIndex;
-            var radioInput = (0, _jquery2.default)('<input type="radio" id="' + id + '" name="' + lineNameElementData + '"></input>');
-            var radioLabel = (0, _jquery2.default)('<label for="' + id + '"></label>');
-            radioLabel.html(value);
-
-            singleValueElement.append(radioInput, radioLabel);
-            lineValueElement.append(singleValueElement);
-        });
-
-        lineNameElement.html(lineNameElementData);
-        line.append(lineNameElement, lineValueElement);
-
-        container.append(line);
-    });
-}
-
-function initInfo() {
-    var infoData = _content2.default.info;
-
-    var container = (0, _jquery2.default)(".order-popup-content-body .container");
-
-    var info = (0, _jquery2.default)('<div class="order-popup-content-body-info"></div>');
-    var infoNumberElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-number"></div>');
-    var infoPhoneElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-phone"></div>');
-    var infoContactElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-contact"></div>');
-
-    var infoNumberElementLabel = (0, _jquery2.default)('<label for="number"></label>');
-    var infoNumberElementInput = (0, _jquery2.default)('<input id="number" type="number" min="1"></input>');
-
-    var infoPhoneElementLabel = (0, _jquery2.default)('<label for="phone"></label>');
-    var infoPhoneElementInput = (0, _jquery2.default)('<input id="phone"></input>');
-
-    var infoContactElementLabel = (0, _jquery2.default)('<label for="contact"></label>');
-    var infoContactElementInput = (0, _jquery2.default)('<input id="contact"></input>');
-
-    infoNumberElementLabel.html(infoData.number.name);
-    infoPhoneElementLabel.html(infoData.phone.name);
-    infoContactElementLabel.html(infoData.contact.name);
-
-    infoNumberElement.append(infoNumberElementLabel, infoNumberElementInput);
-    infoPhoneElement.append(infoPhoneElementLabel, infoPhoneElementInput);
-    infoContactElement.append(infoContactElementLabel, infoContactElementInput);
-
-    info.append(infoNumberElement, infoPhoneElement, infoContactElement);
-
-    container.append(info);
-}
-
-function initContent() {
-    initBody();
-    initInfo();
-}
-
-function initBottom() {
-    (0, _jquery2.default)("#order-popup-button").on("click", onSendEmail);
-}
-
-function getProductInfo() {
-    var lines = (0, _jquery2.default)(".order-popup-content-body-line");
-    var productInfo = {
-        data: [] };
-
-
-    _jquery2.default.each(lines, function (index, item) {
-        var nameLine = (0, _jquery2.default)(item).find(".order-popup-content-body-line-name").html();
-        var valueLine = (0, _jquery2.default)(item).find(".order-popup-content-body-line-value");
-
-        var valueLineOptions = (0, _jquery2.default)(valueLine).find(".order-popup-content-body-line-value-item");
-
-        var chosenOptions = void 0;
-
-        _jquery2.default.each(valueLineOptions, function (i, val) {
-            var selectedOption = (0, _jquery2.default)(val).find("input:checked");
-            if (selectedOption.length) {
-                chosenOptions = (0, _jquery2.default)(val).find("label").html();
-            }
-        });
-
-        productInfo.data.push({ name: nameLine, value: chosenOptions });
-    });
-
-    return productInfo;
-}
-
-function getClientInfo() {
-    return {
-        "number": (0, _jquery2.default)("#number").val(),
-        "phone": (0, _jquery2.default)("#phone").val(),
-        "contact": (0, _jquery2.default)("#contact").val() };
-
-}
-
-
-function onSendEmail() {
-    var message = {
-        "product": getProductInfo(),
-        "client": getClientInfo() };
-
-
-    (0, _message2.default)(message);
-}
-
-function initOrder() {
-    initClose();
-    initTitle();
-    initContent();
-    initBottom();
-}exports.default =
-
-function () {
-    initOrder();
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = {"title":"Быстрая покупка карниза","body":[{"name":"Диаметр труб","value":["16 мм"]},{"name":"Цвет карниза","value":["Антик","Матовый хром"]},{"name":"Тип труб","value":["Гладки","Витье"]},{"name":"Длина","value":["1,6 м","1,8 м","2,0 м","2,4 м","2,8 м","3,0 м","3,2 м","3,6 м","4,0 м","Не знаю"]},{"name":"Кол-во рядов","value":["Одинарный","Двойной"]},{"name":"Тип колец","value":["Без колец","Металлические кольца","Бесшумные кольца"]}],"info":{"number":{"name":"Количество","required":0},"phone":{"name":"Телефон","required":1},"contact":{"name":"Контактное лицо","required":1}},"bottom":{"name":"Купить карниз"}}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(console) {Object.defineProperty(exports, "__esModule", { value: true });exports.default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-function (message) {
-    var service_id = "default_service";
-    var template_id = "spectrokna";
-
-    showLoader();
-
-    emailjs.send('gmail', 'spectrokna', { message: message }).
-    then(function (response) {
-        if (response.status == 200) {
-            hideLoader();
-            (0, _jquery2.default)(".order-popup").hide();
-        }
-    }, function (err) {
-        console.log(err);
-    });
-};var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function showLoader() {(0, _jquery2.default)("#icon-order-loader").css({ "display": "inline-block" });}function hideLoader() {(0, _jquery2.default)("#icon-order-loader").hide();}function showOkayMessage() {};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function(global) {/*global window, global*/
-var util = __webpack_require__(25)
-var assert = __webpack_require__(29)
-var now = __webpack_require__(30)
+var util = __webpack_require__(3)
+var assert = __webpack_require__(12)
+var now = __webpack_require__(13)
 
 var slice = Array.prototype.slice
 var console
@@ -10679,10 +10414,37 @@ function consoleAssert(expression) {
     }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 25 */
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process, console) {// Copyright Joyent, Inc. and other Node contributors.
@@ -11210,7 +10972,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(27);
+exports.isBuffer = __webpack_require__(10);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -11254,7 +11016,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(28);
+exports.inherits = __webpack_require__(11);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -11272,10 +11034,233 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23), __webpack_require__(26), __webpack_require__(24)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(9), __webpack_require__(1)))
 
 /***/ }),
-/* 26 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(5);
+module.exports = __webpack_require__(16);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
+var _orderPopup = __webpack_require__(6);var _orderPopup2 = _interopRequireDefault(_orderPopup);
+var _mainPage = __webpack_require__(14);var _mainPage2 = _interopRequireDefault(_mainPage);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function initEmailing() {
+    emailjs.init("user_MpY9e3kuFF5GAw4dftnoG");
+}
+
+function showOrderPopup() {
+    (0, _jquery2.default)(".order-popup").show();
+    (0, _orderPopup2.default)();
+}
+
+initEmailing();
+(0, _mainPage2.default)();
+(0, _jquery2.default)("#button-order").on("click", showOrderPopup);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
+var _content = __webpack_require__(7);var _content2 = _interopRequireDefault(_content);
+var _message = __webpack_require__(8);var _message2 = _interopRequireDefault(_message);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function initClose() {
+    (0, _jquery2.default)("#order-popup-close").on("click", function () {
+        (0, _jquery2.default)(".order-popup").hide();
+    });
+}
+
+function initTitle() {
+    (0, _jquery2.default)(".order-popup-content-title h2").html(_content2.default.title);
+}
+
+function initBody() {
+    var bodyData = _content2.default.body;
+
+    var container = (0, _jquery2.default)(".order-popup-content-body .container");
+
+    container.html("");
+
+    bodyData.forEach(function (item, index) {
+        var line = (0, _jquery2.default)('<div class="order-popup-content-body-line"></div>');
+        var lineNameElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-name"></div>');
+        var lineValueElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-value"></div>');
+
+        var lineNameElementData = item.name;
+        var lineValueElementData = item.value;
+
+        lineValueElementData.forEach(function (value, valueIndex) {
+            var singleValueElement = (0, _jquery2.default)('<div class="order-popup-content-body-line-value-item"></div>');
+            var id = index + '' + valueIndex;
+            var radioInput = (0, _jquery2.default)('<input type="radio" id="' + id + '" name="' + lineNameElementData + '"></input>');
+            var radioLabel = (0, _jquery2.default)('<label for="' + id + '"></label>');
+            radioLabel.html(value);
+
+            singleValueElement.append(radioInput, radioLabel);
+            lineValueElement.append(singleValueElement);
+        });
+
+        lineNameElement.html(lineNameElementData);
+        line.append(lineNameElement, lineValueElement);
+
+        container.append(line);
+    });
+}
+
+function initInfo() {
+    var infoData = _content2.default.info;
+
+    var container = (0, _jquery2.default)(".order-popup-content-body .container");
+
+    var info = (0, _jquery2.default)('<div class="order-popup-content-body-info"></div>');
+    var infoNumberElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-number"></div>');
+    var infoPhoneElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-phone"></div>');
+    var infoContactElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-contact"></div>');
+
+    var infoNumberElementLabel = (0, _jquery2.default)('<label for="number"></label>');
+    var infoNumberElementInput = (0, _jquery2.default)('<input id="number" type="number" min="1"></input>');
+
+    var infoPhoneElementLabel = (0, _jquery2.default)('<label for="phone"></label>');
+    var infoPhoneElementInput = (0, _jquery2.default)('<input id="phone"></input>');
+
+    var infoContactElementLabel = (0, _jquery2.default)('<label for="contact"></label>');
+    var infoContactElementInput = (0, _jquery2.default)('<input id="contact"></input>');
+
+    infoNumberElementLabel.html(infoData.number.name);
+    infoPhoneElementLabel.html(infoData.phone.name);
+    infoContactElementLabel.html(infoData.contact.name);
+
+    infoNumberElement.append(infoNumberElementLabel, infoNumberElementInput);
+    infoPhoneElement.append(infoPhoneElementLabel, infoPhoneElementInput);
+    infoContactElement.append(infoContactElementLabel, infoContactElementInput);
+
+    info.append(infoNumberElement, infoPhoneElement, infoContactElement);
+
+    container.append(info);
+}
+
+function initContent() {
+    initBody();
+    initInfo();
+}
+
+function initBottom() {
+    (0, _jquery2.default)("#order-popup-button").on("click", onSendEmail);
+}
+
+function getProductInfo() {
+    var lines = (0, _jquery2.default)(".order-popup-content-body-line");
+    var productInfo = {
+        data: [] };
+
+
+    _jquery2.default.each(lines, function (index, item) {
+        var nameLine = (0, _jquery2.default)(item).find(".order-popup-content-body-line-name").html();
+        var valueLine = (0, _jquery2.default)(item).find(".order-popup-content-body-line-value");
+
+        var valueLineOptions = (0, _jquery2.default)(valueLine).find(".order-popup-content-body-line-value-item");
+
+        var chosenOptions = void 0;
+
+        _jquery2.default.each(valueLineOptions, function (i, val) {
+            var selectedOption = (0, _jquery2.default)(val).find("input:checked");
+            if (selectedOption.length) {
+                chosenOptions = (0, _jquery2.default)(val).find("label").html();
+            }
+        });
+
+        productInfo.data.push({ name: nameLine, value: chosenOptions });
+    });
+
+    return productInfo;
+}
+
+function getClientInfo() {
+    return {
+        "number": (0, _jquery2.default)("#number").val(),
+        "phone": (0, _jquery2.default)("#phone").val(),
+        "contact": (0, _jquery2.default)("#contact").val() };
+
+}
+
+
+function onSendEmail() {
+    var message = {
+        "product": getProductInfo(),
+        "client": getClientInfo() };
+
+
+    (0, _message2.default)(message);
+}
+
+function initOrder() {
+    initClose();
+    initTitle();
+    initContent();
+    initBottom();
+}exports.default =
+
+function () {
+    initOrder();
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = {"title":"Быстрая покупка карниза","body":[{"name":"Диаметр труб","value":["16 мм"]},{"name":"Цвет карниза","value":["Антик","Матовый хром"]},{"name":"Тип труб","value":["Гладки","Витье"]},{"name":"Длина","value":["1,6 м","1,8 м","2,0 м","2,4 м","2,8 м","3,0 м","3,2 м","3,6 м","4,0 м","Не знаю"]},{"name":"Кол-во рядов","value":["Одинарный","Двойной"]},{"name":"Тип колец","value":["Без колец","Металлические кольца","Бесшумные кольца"]}],"info":{"number":{"name":"Количество","required":0},"phone":{"name":"Телефон","required":1},"contact":{"name":"Контактное лицо","required":1}},"bottom":{"name":"Купить карниз"}}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(console) {Object.defineProperty(exports, "__esModule", { value: true });exports.default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+function (message) {
+    var service_id = "default_service";
+    var template_id = "spectrokna";
+
+    showLoader();
+
+    emailjs.send('gmail', 'spectrokna', { message: message }).
+    then(function (response) {
+        if (response.status == 200) {
+            hideLoader();
+            (0, _jquery2.default)(".order-popup").hide();
+        }
+    }, function (err) {
+        console.log(err);
+    });
+};var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function showLoader() {(0, _jquery2.default)("#icon-order-loader").css({ "display": "inline-block" });}function hideLoader() {(0, _jquery2.default)("#icon-order-loader").hide();}function showOkayMessage() {};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11465,7 +11450,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 27 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -11476,7 +11461,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 28 */
+/* 11 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -11505,7 +11490,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 29 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11577,7 +11562,7 @@ function isBuffer(b) {
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var util = __webpack_require__(25);
+var util = __webpack_require__(3);
 var hasOwn = Object.prototype.hasOwnProperty;
 var pSlice = Array.prototype.slice;
 var functionsHaveNames = (function () {
@@ -12000,10 +11985,10 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 30 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = now
@@ -12013,5 +11998,80 @@ function now() {
 }
 
 
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(console) {Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
+var _whatWeOffer = __webpack_require__(15);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function initAboutUs() {}
+
+function initCatalog() {}
+
+function initKarnizy() {}
+
+function initLiders() {}
+
+function initWhatWeOffer() {
+    var h2 = (0, _jquery2.default)("<h2></h2>").html(_whatWeOffer2.default.header);
+    (0, _jquery2.default)(".what-we-offer .header-section").append(h2);
+
+    var content = _whatWeOffer2.default.content;
+    var contentElements = [];
+
+    content.forEach(function (item, i) {
+        var element = createElement(item);
+        contentElements.push(element);
+    });
+
+    console.log(contentElements);
+
+    contentElements.forEach(function (item, i) {
+        (0, _jquery2.default)(".what-we-offer .section-container").append((0, _jquery2.default)(item));
+    });
+}
+
+function createElement(item, parent) {
+    if (item.children) {
+        item.children.forEach(function (child, i) {
+            parent = createElement(child, parent);
+        });
+    }
+
+    var element = document.createElement(item.tag);
+    if (item.text) {
+        (0, _jquery2.default)(element).html(item.text);
+    }
+    if (parent) {
+        (0, _jquery2.default)(parent).append(element);
+    }
+
+    return element;
+}exports.default =
+
+function () {
+    initAboutUs();
+    initCatalog();
+    initKarnizy();
+    initLiders();
+    initWhatWeOffer();
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Что мы предлагаем","content":[{"tag":"div","children":[{"tag":"p","children":"","text":"Шторы – традиционный и самый популярный способ оформления окна. Гардины открывают дизайнеру практически неограниченные возможности для творчества."},{"tag":"p","children":"","text":"Итоговая цена штор зависит от нескольких факторов:"},{"tag":"div","children":[{"tag":"ol","children":[{"tag":"li","children":"","text":"Стоимость материалов."},{"tag":"li","children":"","text":"Количество используемой ткани."},{"tag":"li","children":"","text":"Сложность исполнения комплекта."},{"tag":"li","children":"","text":"Услуги дизайнера."},{"tag":"li","children":"","text":"Дополнительные украшения (подхваты, кисти, металлические люверсы и другие)."}]}],"text":""}],"text":""},{"tag":"h3","children":"","text":"Ткани для штор"},{"tag":"p","children":"","text":"Выбор тканей для штор очень широк. Вы можете купить плотные гардины из тяжелого бархата либо ограничиться легкими занавесками из органзы или тюля. Выбор зависит от дизайна комнаты и назначения штор: рассеивать солнечный свет или обеспечивать приватность в темное время суток.В продаже встречаются как натуральные, так и искусственные материалы.Последние считаются более практичными, но ткань из натуральных волокон зачастую превосходит их по эстетическим качествам– правда, и по цене тоже."},{"tag":"h3","children":"","text":"Расход ткани для штор"},{"tag":"p","children":"","text":"Ширина оконного проема, высота потолка и желаемая глубина и количество складок определяют, насколько много ткани для штор вам понадобится купить. Увеличение любого из этих параметров сказывается на расходе ткани и автоматически повышает цену готовой композиции."},{"tag":"h3","children":"","text":"Пошив штор"},{"tag":"p","children":"","text":"Обработка срезов штор, их подготовка к размещению на карнизе, выполнение драпировок и подборов – все это также оплачивается отдельно. Шторы на люверсах или специальной шторной ленте ложатся аккуратными равномерными складками и легко раздвигаются. Иногда швеи закладывают глубокие складки вручную: это дороже, но придает плотным гардинам впечатляющий вид."},{"tag":"h3","children":"","text":"Дизайн штор"},{"tag":"p","children":"","text":"В простых минималистичных интерьерах шторы чаще всего представляют собой несколько собранных в вертикальные складки полотнищ ткани. Однако вы можете купить комплект штор более сложного и изысканного вида: с декоративными драпировками, подборами, комбинацией нескольких материалов.Зачастую такой дизайн разрабатывается индивидуально для каждого заказчика.В своем классическом варианте шторы подвешены к карнизу только сверху, однако в последнее время стали популярными шторы из тюля, верхние и нижние края которых закреплены на направляющих.Вертикальные складки на них получаются более четкими.Такие шторы можно сдвигать в сторону,как складную ширму.Еще более экзотическим вариантом являются перекрещенные шторы– комплект из двух полотнищ, перекрещивающих друг друга по диагонали."},{"tag":"h3","children":"","text":"Как заказать шторы"},{"tag":"p","children":"","text":"На этой странице каталога размещены контактные данные компаний, у которых вы можете купить готовые шторы либо заказать пошив штор по индивидуальному эскизу. В штате таких мастерских зачастую есть и художник, который поможет вам разработать подходящий дизайн штор.Чтобы задать дополнительные вопросы и оформить заявку на пошив штор, просто свяжитесь с продавцом по указанным телефонам."}]}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
 /***/ })
 /******/ ]);
+//# sourceMappingURL=app.js.map
