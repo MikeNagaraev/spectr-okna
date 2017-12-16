@@ -11041,7 +11041,7 @@ function hasOwnProperty(obj, prop) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(5);
-module.exports = __webpack_require__(18);
+module.exports = __webpack_require__(22);
 
 
 /***/ }),
@@ -12005,14 +12005,14 @@ function now() {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
 
-var _whatWeOffer = __webpack_require__(38);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);
-var _liders = __webpack_require__(39);var _liders2 = _interopRequireDefault(_liders);
-var _karnizy = __webpack_require__(40);var _karnizy2 = _interopRequireDefault(_karnizy);
-var _catalog = __webpack_require__(41);var _catalog2 = _interopRequireDefault(_catalog);
-var _installation = __webpack_require__(42);var _installation2 = _interopRequireDefault(_installation);
-var _aboutUs = __webpack_require__(43);var _aboutUs2 = _interopRequireDefault(_aboutUs);
+var _whatWeOffer = __webpack_require__(15);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);
+var _liders = __webpack_require__(16);var _liders2 = _interopRequireDefault(_liders);
+var _karnizy = __webpack_require__(17);var _karnizy2 = _interopRequireDefault(_karnizy);
+var _catalog = __webpack_require__(18);var _catalog2 = _interopRequireDefault(_catalog);
+var _installation = __webpack_require__(19);var _installation2 = _interopRequireDefault(_installation);
+var _aboutUs = __webpack_require__(20);var _aboutUs2 = _interopRequireDefault(_aboutUs);
 
-var _common = __webpack_require__(17);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _common = __webpack_require__(21);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function initAboutUs() {
     var h2 = (0, _jquery2.default)("<h2></h2>").html(_aboutUs2.default.header);
@@ -12126,9 +12126,43 @@ function () {
 };
 
 /***/ }),
-/* 15 */,
-/* 16 */,
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Что мы предлагаем","content":[{"tag":"div","children":[{"tag":"p","children":"","text":"Шторы – традиционный и самый популярный способ оформления окна. Гардины открывают дизайнеру практически неограниченные возможности для творчества."},{"tag":"p","children":"","text":"Итоговая цена штор зависит от нескольких факторов:"},{"tag":"div","children":[{"tag":"ol","children":[{"tag":"li","children":"","text":"Стоимость материалов."},{"tag":"li","children":"","text":"Количество используемой ткани."},{"tag":"li","children":"","text":"Сложность исполнения комплекта."},{"tag":"li","children":"","text":"Услуги дизайнера."},{"tag":"li","children":"","text":"Дополнительные украшения (подхваты, кисти, металлические люверсы и другие)."}]}],"text":""}],"text":""},{"tag":"h3","children":"","text":"Ткани для штор"},{"tag":"p","children":"","text":"Выбор тканей для штор очень широк. Вы можете купить плотные гардины из тяжелого бархата либо ограничиться легкими занавесками из органзы или тюля. Выбор зависит от дизайна комнаты и назначения штор: рассеивать солнечный свет или обеспечивать приватность в темное время суток.В продаже встречаются как натуральные, так и искусственные материалы.Последние считаются более практичными, но ткань из натуральных волокон зачастую превосходит их по эстетическим качествам– правда, и по цене тоже."},{"tag":"h3","children":"","text":"Расход ткани для штор"},{"tag":"p","children":"","text":"Ширина оконного проема, высота потолка и желаемая глубина и количество складок определяют, насколько много ткани для штор вам понадобится купить. Увеличение любого из этих параметров сказывается на расходе ткани и автоматически повышает цену готовой композиции."},{"tag":"h3","children":"","text":"Пошив штор"},{"tag":"p","children":"","text":"Обработка срезов штор, их подготовка к размещению на карнизе, выполнение драпировок и подборов – все это также оплачивается отдельно. Шторы на люверсах или специальной шторной ленте ложатся аккуратными равномерными складками и легко раздвигаются. Иногда швеи закладывают глубокие складки вручную: это дороже, но придает плотным гардинам впечатляющий вид."},{"tag":"h3","children":"","text":"Дизайн штор"},{"tag":"p","children":"","text":"В простых минималистичных интерьерах шторы чаще всего представляют собой несколько собранных в вертикальные складки полотнищ ткани. Однако вы можете купить комплект штор более сложного и изысканного вида: с декоративными драпировками, подборами, комбинацией нескольких материалов.Зачастую такой дизайн разрабатывается индивидуально для каждого заказчика.В своем классическом варианте шторы подвешены к карнизу только сверху, однако в последнее время стали популярными шторы из тюля, верхние и нижние края которых закреплены на направляющих.Вертикальные складки на них получаются более четкими.Такие шторы можно сдвигать в сторону,как складную ширму.Еще более экзотическим вариантом являются перекрещенные шторы– комплект из двух полотнищ, перекрещивающих друг друга по диагонали."},{"tag":"h3","children":"","text":"Как заказать шторы"},{"tag":"p","children":"","text":"На этой странице каталога размещены контактные данные компаний, у которых вы можете купить готовые шторы либо заказать пошив штор по индивидуальному эскизу. В штате таких мастерских зачастую есть и художник, который поможет вам разработать подходящий дизайн штор.Чтобы задать дополнительные вопросы и оформить заявку на пошив штор, просто свяжитесь с продавцом по указанным телефонам."}]}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Лидеры продаж","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
+
+/***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Карнизы","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы бело-черные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 16 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 25 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Аксессуары кованных карнизов"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Потолочные карнизы"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]}]}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Каталог товаров","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Шторы"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Каталог работ"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Установка","content":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Быстро"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Надежно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Недорого"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Качественно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Вам понравится"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Мы вас любим"}]}]}]}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Все для вашего окна, найдете у нас!","content":[{"tag":"ul","className":"about-us-features-list","children":[{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Монтаж карниза для штор от 10р."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"При заказе: карниз+установка, приятная скидка."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Установка от 10р. в любое удобное для вас время и день."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Аккуратная установка любого металлического или потолочного карниза в эркерном исполнении (трапеция,угловой) под различным углом."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Доставка, по Минску, бесплатно!"}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Срочная установка, выполним заказ в кратчайший срок."}]}]}]}
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12160,65 +12194,10 @@ function getDomTreeELement(item, parentElement) {
 getDomTreeELement = getDomTreeELement;
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Что мы предлагаем","content":[{"tag":"div","children":[{"tag":"p","children":"","text":"Шторы – традиционный и самый популярный способ оформления окна. Гардины открывают дизайнеру практически неограниченные возможности для творчества."},{"tag":"p","children":"","text":"Итоговая цена штор зависит от нескольких факторов:"},{"tag":"div","children":[{"tag":"ol","children":[{"tag":"li","children":"","text":"Стоимость материалов."},{"tag":"li","children":"","text":"Количество используемой ткани."},{"tag":"li","children":"","text":"Сложность исполнения комплекта."},{"tag":"li","children":"","text":"Услуги дизайнера."},{"tag":"li","children":"","text":"Дополнительные украшения (подхваты, кисти, металлические люверсы и другие)."}]}],"text":""}],"text":""},{"tag":"h3","children":"","text":"Ткани для штор"},{"tag":"p","children":"","text":"Выбор тканей для штор очень широк. Вы можете купить плотные гардины из тяжелого бархата либо ограничиться легкими занавесками из органзы или тюля. Выбор зависит от дизайна комнаты и назначения штор: рассеивать солнечный свет или обеспечивать приватность в темное время суток.В продаже встречаются как натуральные, так и искусственные материалы.Последние считаются более практичными, но ткань из натуральных волокон зачастую превосходит их по эстетическим качествам– правда, и по цене тоже."},{"tag":"h3","children":"","text":"Расход ткани для штор"},{"tag":"p","children":"","text":"Ширина оконного проема, высота потолка и желаемая глубина и количество складок определяют, насколько много ткани для штор вам понадобится купить. Увеличение любого из этих параметров сказывается на расходе ткани и автоматически повышает цену готовой композиции."},{"tag":"h3","children":"","text":"Пошив штор"},{"tag":"p","children":"","text":"Обработка срезов штор, их подготовка к размещению на карнизе, выполнение драпировок и подборов – все это также оплачивается отдельно. Шторы на люверсах или специальной шторной ленте ложатся аккуратными равномерными складками и легко раздвигаются. Иногда швеи закладывают глубокие складки вручную: это дороже, но придает плотным гардинам впечатляющий вид."},{"tag":"h3","children":"","text":"Дизайн штор"},{"tag":"p","children":"","text":"В простых минималистичных интерьерах шторы чаще всего представляют собой несколько собранных в вертикальные складки полотнищ ткани. Однако вы можете купить комплект штор более сложного и изысканного вида: с декоративными драпировками, подборами, комбинацией нескольких материалов.Зачастую такой дизайн разрабатывается индивидуально для каждого заказчика.В своем классическом варианте шторы подвешены к карнизу только сверху, однако в последнее время стали популярными шторы из тюля, верхние и нижние края которых закреплены на направляющих.Вертикальные складки на них получаются более четкими.Такие шторы можно сдвигать в сторону,как складную ширму.Еще более экзотическим вариантом являются перекрещенные шторы– комплект из двух полотнищ, перекрещивающих друг друга по диагонали."},{"tag":"h3","children":"","text":"Как заказать шторы"},{"tag":"p","children":"","text":"На этой странице каталога размещены контактные данные компаний, у которых вы можете купить готовые шторы либо заказать пошив штор по индивидуальному эскизу. В штате таких мастерских зачастую есть и художник, который поможет вам разработать подходящий дизайн штор.Чтобы задать дополнительные вопросы и оформить заявку на пошив штор, просто свяжитесь с продавцом по указанным телефонам."}]}
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Лидеры продаж","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Карнизы","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы бело-черные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 16 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 25 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Аксессуары кованных карнизов"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Потолочные карнизы"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]}]}
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Каталог товаров","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Шторы"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Каталог работ"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Установка","content":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Быстро"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Надежно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Недорого"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Качественно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Вам понравится"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Мы вас любим"}]}]}]}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-module.exports = {"header":"Все для вашего окна, найдете у нас!","content":[{"tag":"ul","className":"about-us-features-list","children":[{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Монтаж карниза для штор от 10р."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"При заказе: карниз+установка, приятная скидка."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Установка от 10р. в любое удобное для вас время и день."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Аккуратная установка любого металлического или потолочного карниза в эркерном исполнении (трапеция,угловой) под различным углом."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Доставка, по Минску, бесплатно!"}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Срочная установка, выполним заказ в кратчайший срок."}]}]}]}
 
 /***/ })
 /******/ ]);
