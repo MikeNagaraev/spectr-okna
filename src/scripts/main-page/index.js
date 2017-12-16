@@ -26,23 +26,6 @@ function initAboutUs() {
     });
 }
 
-function initInstallation() {
-    let h2 = $("<h2></h2>").html(installationJson.header);
-    $(".installation .header-section").append(h2);
-
-    let contentElements = [];
-    let content = installationJson.content;
-
-    content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
-        contentElements.push(element);
-    });
-
-    contentElements.forEach((item, i) => {
-        $(".installation .section-container").append($(item));
-    });
-}
-
 function initCatalog() {
     let h2 = $("<h2></h2>").html(catalogJson.header);
     $(".catalog .header-section").append(h2);
@@ -74,6 +57,23 @@ function initKarnizy() {
 
     contentElements.forEach((item, i) => {
         $(".karnizy .section-container-cards").append($(item));
+    });
+}
+
+function initInstallation() {
+    let h2 = $("<h2></h2>").html(installationJson.header);
+    $(".installation .header-section").append(h2);
+
+    let contentElements = [];
+    let content = installationJson.content;
+
+    content.forEach((item, i) => {
+        let element = getDomTreeELement(item);
+        contentElements.push(element);
+    });
+
+    contentElements.forEach((item, i) => {
+        $(".installation .section-container").append($(item));
     });
 }
 

@@ -12031,23 +12031,6 @@ function initAboutUs() {
     });
 }
 
-function initInstallation() {
-    var h2 = (0, _jquery2.default)("<h2></h2>").html(_installation2.default.header);
-    (0, _jquery2.default)(".installation .header-section").append(h2);
-
-    var contentElements = [];
-    var content = _installation2.default.content;
-
-    content.forEach(function (item, i) {
-        var element = (0, _common.getDomTreeELement)(item);
-        contentElements.push(element);
-    });
-
-    contentElements.forEach(function (item, i) {
-        (0, _jquery2.default)(".installation .section-container").append((0, _jquery2.default)(item));
-    });
-}
-
 function initCatalog() {
     var h2 = (0, _jquery2.default)("<h2></h2>").html(_catalog2.default.header);
     (0, _jquery2.default)(".catalog .header-section").append(h2);
@@ -12079,6 +12062,23 @@ function initKarnizy() {
 
     contentElements.forEach(function (item, i) {
         (0, _jquery2.default)(".karnizy .section-container-cards").append((0, _jquery2.default)(item));
+    });
+}
+
+function initInstallation() {
+    var h2 = (0, _jquery2.default)("<h2></h2>").html(_installation2.default.header);
+    (0, _jquery2.default)(".installation .header-section").append(h2);
+
+    var contentElements = [];
+    var content = _installation2.default.content;
+
+    content.forEach(function (item, i) {
+        var element = (0, _common.getDomTreeELement)(item);
+        contentElements.push(element);
+    });
+
+    contentElements.forEach(function (item, i) {
+        (0, _jquery2.default)(".installation .section-container").append((0, _jquery2.default)(item));
     });
 }
 
