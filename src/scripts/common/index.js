@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 function getDomTreeELement(item, parentElement) {
     let element = document.createElement(item.tag);
     if (item.text) {

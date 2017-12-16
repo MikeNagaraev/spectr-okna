@@ -1,0 +1,112 @@
+{
+    "header": "Установка",
+    "content": [{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Быстро"
+                }]
+            }
+        ]
+    },{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Надежно"
+                }]
+            }
+        ]
+    },{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Недорого"
+                }]
+            }
+        ]
+    },{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Качественно"
+                }]
+            }
+        ]
+    },{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Вам понравится"
+                }]
+            }
+        ]
+    },{
+        "tag": "div",
+        "className": "attributes-item",
+        "children": [
+            {
+                "tag": "div",
+                "className": "attributes-item",
+                "children": [{
+                    "tag": "div",
+                    "className": "attributes-item-icon"
+                },
+                {
+                    "tag": "div",
+                    "className": "attributes-item-description",
+                    "text": "Мы вас любим"
+                }]
+            }
+        ]
+    }]
+}
