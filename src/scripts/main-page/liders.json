@@ -1,0 +1,105 @@
+{
+    "header": "Лидеры продаж",
+    "content": [{
+            "tag": "div",
+            "className": "card-item",
+            "children": [{
+                    "tag": "div",
+                    "className": "img-wrapper",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "children": [{
+                            "tag": "div",
+                            "className": "img-shadow"
+                        }, {
+                            "tag": "img",
+                            "src": "dist/images/shtory/18.jpg"
+                        }]
+                    }]
+                },
+                {
+                    "tag": "h2",
+                    "className": "card-item-name",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "text": "Супер карниз"
+                    }]
+                },
+                {
+                    "tag": "p",
+                    "className": "card-item-info",
+                    "text": "100 р"
+                }
+            ]
+        },
+        {
+            "tag": "div",
+            "className": "card-item",
+            "children": [{
+                    "tag": "div",
+                    "className": "img-wrapper",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "children": [{
+                            "tag": "div",
+                            "className": "img-shadow"
+                        }, {
+                            "tag": "img",
+                            "src": "dist/images/shtory/18.jpg"
+                        }]
+                    }]
+                },
+                {
+                    "tag": "h2",
+                    "className": "card-item-name",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "text": "Супер карниз"
+                    }]
+                },
+                {
+                    "tag": "p",
+                    "className": "card-item-info",
+                    "text": "100 р"
+                }
+            ]
+        }, {
+            "tag": "div",
+            "className": "card-item",
+            "children": [{
+                    "tag": "div",
+                    "className": "img-wrapper",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "children": [{
+                            "tag": "div",
+                            "className": "img-shadow"
+                        }, {
+                            "tag": "img",
+                            "src": "dist/images/shtory/18.jpg"
+                        }]
+                    }]
+                },
+                {
+                    "tag": "h2",
+                    "className": "card-item-name",
+                    "children": [{
+                        "tag": "a",
+                        "href": "",
+                        "text": "Супер карниз"
+                    }]
+                },
+                {
+                    "tag": "p",
+                    "className": "card-item-info",
+                    "text": "100 р"
+                }
+            ]
+        }
+    ]
+}

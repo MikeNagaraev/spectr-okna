@@ -1,5 +1,7 @@
 import $ from "jquery";
-import whatWeOffer from "./whatWeOffer.json";
+import whatWeOfferJson from "./whatWeOffer.json";
+import lidersJson from "./liders.json";
+import { getDomTreeELement } from "../common";
 
 function initAboutUs() {}
 
@@ -7,43 +9,38 @@ function initCatalog() {}
 
 function initKarnizy() {}
 
-function initLiders() {}
+function initLiders() {
+    let h2 = $("<h2></h2>").html(lidersJson.header);
+    $(".liders .header-section").append(h2);
 
-function initWhatWeOffer() {
-    let h2 = $("<h2></h2>").html(whatWeOffer.header);
-    $(".what-we-offer .header-section").append(h2);
-
-    let content = whatWeOffer.content;
     let contentElements = [];
+    let content = lidersJson.content;
 
     content.forEach((item, i) => {
-        let element = createElement(item);
+        let element = getDomTreeELement(item);
         contentElements.push(element);
     });
 
-    console.log(contentElements)
-
     contentElements.forEach((item, i) => {
-      $(".what-we-offer .section-container").append($(item));
+        $(".liders .section-container-cards").append($(item));
     });
 }
 
-function createElement(item, parent) {
-    if (item.children) {
-        item.children.forEach((child, i) => {
-            parent = createElement(child, parent);
-        });
-    }
+function initWhatWeOffer() {
+    let h2 = $("<h2></h2>").html(whatWeOfferJson.header);
+    $(".what-we-offer .header-section").append(h2);
 
-    let element = document.createElement(item.tag);
-    if (item.text) {
-        $(element).html(item.text);
-    }
-    if (parent) {
-        $(parent).append(element);
-    }
+    let contentElements = [];
+    let content = whatWeOfferJson.content;
 
-    return element;
+    content.forEach((item, i) => {
+        let element = getDomTreeELement(item);
+        contentElements.push(element);
+    });
+
+    contentElements.forEach((item, i) => {
+        $(".what-we-offer .section-container").append($(item));
+    });
 }
 
 export default() => {

@@ -12003,8 +12003,10 @@ function now() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(console) {Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
-var _whatWeOffer = __webpack_require__(15);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
+var _whatWeOffer = __webpack_require__(15);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);
+var _liders = __webpack_require__(33);var _liders2 = _interopRequireDefault(_liders);
+var _common = __webpack_require__(34);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function initAboutUs() {}
 
@@ -12012,43 +12014,38 @@ function initCatalog() {}
 
 function initKarnizy() {}
 
-function initLiders() {}
+function initLiders() {
+    var h2 = (0, _jquery2.default)("<h2></h2>").html(_liders2.default.header);
+    (0, _jquery2.default)(".liders .header-section").append(h2);
+
+    var contentElements = [];
+    var content = _liders2.default.content;
+
+    content.forEach(function (item, i) {
+        var element = (0, _common.getDomTreeELement)(item);
+        contentElements.push(element);
+    });
+
+    contentElements.forEach(function (item, i) {
+        (0, _jquery2.default)(".liders .section-container-cards").append((0, _jquery2.default)(item));
+    });
+}
 
 function initWhatWeOffer() {
     var h2 = (0, _jquery2.default)("<h2></h2>").html(_whatWeOffer2.default.header);
     (0, _jquery2.default)(".what-we-offer .header-section").append(h2);
 
-    var content = _whatWeOffer2.default.content;
     var contentElements = [];
+    var content = _whatWeOffer2.default.content;
 
     content.forEach(function (item, i) {
-        var element = createElement(item);
+        var element = (0, _common.getDomTreeELement)(item);
         contentElements.push(element);
     });
-
-    console.log(contentElements);
 
     contentElements.forEach(function (item, i) {
         (0, _jquery2.default)(".what-we-offer .section-container").append((0, _jquery2.default)(item));
     });
-}
-
-function createElement(item, parent) {
-    if (item.children) {
-        item.children.forEach(function (child, i) {
-            parent = createElement(child, parent);
-        });
-    }
-
-    var element = document.createElement(item.tag);
-    if (item.text) {
-        (0, _jquery2.default)(element).html(item.text);
-    }
-    if (parent) {
-        (0, _jquery2.default)(parent).append(element);
-    }
-
-    return element;
 }exports.default =
 
 function () {
@@ -12058,7 +12055,6 @@ function () {
     initLiders();
     initWhatWeOffer();
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 15 */
@@ -12071,6 +12067,58 @@ module.exports = {"header":"Что мы предлагаем","content":[{"tag":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = {"header":"Лидеры продаж","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });function getDomTreeELement(item, parentElement) {
+    var element = document.createElement(item.tag);
+    if (item.text) {
+        $(element).html(item.text);
+    }
+    if (item.children) {
+        item.children.forEach(function (child) {
+            $(element).append(getDomTreeELement(child, element));
+        });
+    }
+    if (item.className) {
+        $(element).addClass(item.className);
+    }
+    if (item.src) {
+        $(element).attr("src", item.src);
+    }
+    if (item.href) {
+        $(element).attr("href", item.href);
+    }
+
+    return element;
+}exports.
+
+getDomTreeELement = getDomTreeELement;
 
 /***/ })
 /******/ ]);
