@@ -1,3 +1,5 @@
 /node_modules
 /content
 /font-awesome
+npm-debug.log
+package-json.log
