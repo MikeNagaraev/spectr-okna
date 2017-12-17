@@ -74,7 +74,7 @@ export default function(env) {
             extensions: ['.js', '.scss', '.css']
         },
         watch: true,
-        // devtool: 'source-map',
+        devtool: 'source-map',
         devServer: {
             contentBase: env.PROD ? __dirname : __dirname, // for heroku
             compress: true,

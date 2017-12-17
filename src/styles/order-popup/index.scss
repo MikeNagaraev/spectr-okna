@@ -60,7 +60,7 @@ $order-popup-height: 450px;
         line-height: $order-close-button-size;
         text-align: center;
         font-size: 2rem;
-        background: red;
+        background: $red;
         color: #ffffff;
         cursor: pointer;
 
@@ -99,6 +99,9 @@ $order-popup-height: 450px;
                     flex: 7;
                     display: flex;
                     flex-flow: row wrap;
+                    @include respond-to(tablet) {
+                        flex: 10;
+                    }
 
                     &-item {
                         margin-left: 10px;

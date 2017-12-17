@@ -1,6 +1,9 @@
 import $ from "jquery";
 import content from "./content.json";
 import sendEmail from "../message/message";
+import maskIt from "./maskit.js";
+
+maskIt();
 
 function initClose() {
     $("#order-popup-close").on("click", () => {
@@ -10,6 +13,22 @@ function initClose() {
 
 function initTitle() {
     $(".order-popup-content-title h2").html(content.title);
+}
+
+function disableSendingOrder() {}
+
+function enableWarningInput(element) {
+    if (!$(element).hasClass("input-warning")) {
+        $(element).removeClass("input-valid");
+        $(element).addClass("input-warning");
+    }
+}
+
+function disableWarningInput(element) {
+    if ($(element).hasClass("input-warning")) {
+        $(element).removeClass("input-warning");
+        $(element).addClass("input-valid");
+    }
 }
 
 function initBody() {
@@ -56,13 +75,31 @@ function initInfo() {
     let infoContactElement = $('<div class="order-popup-content-body-info-contact"></div>');
 
     let infoNumberElementLabel = $('<label for="number"></label>');
-    let infoNumberElementInput = $('<input id="number" type="number" min="1"></input>');
+    let infoNumberElementInput = $('<input id="number" type="number" min="1" value="1"></input>');
 
     let infoPhoneElementLabel = $('<label for="phone"></label>');
-    let infoPhoneElementInput = $('<input id="phone"></input>');
+    let infoPhoneElementInput = document.createElement("input");
+    $(infoPhoneElementInput).attr({"id": "phone", "type": "tel", "placeholder": "+375 (44) 111-11-11"});
+    infoPhoneElementInput.maskItWith('+NNN (NN) NNN-NN-NN');
+
+    $(infoPhoneElementInput).focusout(function(e) {
+        if (infoPhoneElementInput.masked()) {
+            disableWarningInput(infoPhoneElementInput);
+        } else {
+            enableWarningInput(infoPhoneElementInput);
+        }
+    });
 
     let infoContactElementLabel = $('<label for="contact"></label>');
-    let infoContactElementInput = $('<input id="contact"></input>');
+    let infoContactElementInput = $('<input id="contact" placeholder="Иванов Иван Иванович"></input>');
+
+    $(infoContactElementInput).focusout(function(e) {
+        if ($.trim(infoContactElementInput.val()) != "") {
+            disableWarningInput(infoContactElementInput);
+        } else {
+            enableWarningInput(infoContactElementInput);
+        }
+    });
 
     infoNumberElementLabel.html(infoData.number.name);
     infoPhoneElementLabel.html(infoData.phone.name);
@@ -114,21 +151,31 @@ function getProductInfo() {
 }
 
 function getClientInfo() {
-    return {
-      "number": $("#number").val(),
-      "phone": $("#phone").val(),
-      "contact": $("#contact").val()
-    };
+    return {"number": $("#number").val(), "phone": $("#phone").val(), "contact": $("#contact").val()};
 }
 
+function isFormValid() {
+    if ($("#phone").hasClass("input-warning") || $.trim($("#phone").val()) == "") {
+        return false;
+    }
+    if ($("#contact").hasClass("input-warning") || $.trim($("#contact").val()) == "") {
+        return false;
+    }
+
+    return true;
+}
 
 function onSendEmail() {
-    let message = {
-        "product": getProductInfo(),
-        "client": getClientInfo()
-    };
+    if (isFormValid()) {
+        let message = {
+            "product": getProductInfo(),
+            "client": getClientInfo()
+        };
 
-    sendEmail(message);
+        sendEmail(message);
+    } else {
+        alert("Форма заполнена некорректно");
+    }
 }
 
 function initOrder() {

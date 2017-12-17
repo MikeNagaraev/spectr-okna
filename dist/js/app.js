@@ -10356,8 +10356,8 @@ module.exports = g;
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global window, global*/
 var util = __webpack_require__(3)
-var assert = __webpack_require__(12)
-var now = __webpack_require__(13)
+var assert = __webpack_require__(13)
+var now = __webpack_require__(14)
 
 var slice = Array.prototype.slice
 var console
@@ -10972,7 +10972,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(10);
+exports.isBuffer = __webpack_require__(11);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -11016,7 +11016,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(11);
+exports.inherits = __webpack_require__(12);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -11034,14 +11034,14 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(9), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10), __webpack_require__(2)))
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(5);
-module.exports = __webpack_require__(22);
+module.exports = __webpack_require__(23);
 
 
 /***/ }),
@@ -11051,7 +11051,7 @@ module.exports = __webpack_require__(22);
 "use strict";
 var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
 var _orderPopup = __webpack_require__(6);var _orderPopup2 = _interopRequireDefault(_orderPopup);
-var _mainPage = __webpack_require__(14);var _mainPage2 = _interopRequireDefault(_mainPage);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _mainPage = __webpack_require__(15);var _mainPage2 = _interopRequireDefault(_mainPage);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
 function initEmailing() {
@@ -11073,8 +11073,11 @@ initEmailing();
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
-var _content = __webpack_require__(7);var _content2 = _interopRequireDefault(_content);
-var _message = __webpack_require__(8);var _message2 = _interopRequireDefault(_message);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _content = __webpack_require__(8);var _content2 = _interopRequireDefault(_content);
+var _message = __webpack_require__(9);var _message2 = _interopRequireDefault(_message);
+var _maskit = __webpack_require__(40);var _maskit2 = _interopRequireDefault(_maskit);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+(0, _maskit2.default)();
 
 function initClose() {
     (0, _jquery2.default)("#order-popup-close").on("click", function () {
@@ -11084,6 +11087,22 @@ function initClose() {
 
 function initTitle() {
     (0, _jquery2.default)(".order-popup-content-title h2").html(_content2.default.title);
+}
+
+function disableSendingOrder() {}
+
+function enableWarningInput(element) {
+    if (!(0, _jquery2.default)(element).hasClass("input-warning")) {
+        (0, _jquery2.default)(element).removeClass("input-valid");
+        (0, _jquery2.default)(element).addClass("input-warning");
+    }
+}
+
+function disableWarningInput(element) {
+    if ((0, _jquery2.default)(element).hasClass("input-warning")) {
+        (0, _jquery2.default)(element).removeClass("input-warning");
+        (0, _jquery2.default)(element).addClass("input-valid");
+    }
 }
 
 function initBody() {
@@ -11130,13 +11149,31 @@ function initInfo() {
     var infoContactElement = (0, _jquery2.default)('<div class="order-popup-content-body-info-contact"></div>');
 
     var infoNumberElementLabel = (0, _jquery2.default)('<label for="number"></label>');
-    var infoNumberElementInput = (0, _jquery2.default)('<input id="number" type="number" min="1"></input>');
+    var infoNumberElementInput = (0, _jquery2.default)('<input id="number" type="number" min="1" value="1"></input>');
 
     var infoPhoneElementLabel = (0, _jquery2.default)('<label for="phone"></label>');
-    var infoPhoneElementInput = (0, _jquery2.default)('<input id="phone"></input>');
+    var infoPhoneElementInput = document.createElement("input");
+    (0, _jquery2.default)(infoPhoneElementInput).attr({ "id": "phone", "type": "tel", "placeholder": "+375 (44) 111-11-11" });
+    infoPhoneElementInput.maskItWith('+NNN (NN) NNN-NN-NN');
+
+    (0, _jquery2.default)(infoPhoneElementInput).focusout(function (e) {
+        if (infoPhoneElementInput.masked()) {
+            disableWarningInput(infoPhoneElementInput);
+        } else {
+            enableWarningInput(infoPhoneElementInput);
+        }
+    });
 
     var infoContactElementLabel = (0, _jquery2.default)('<label for="contact"></label>');
-    var infoContactElementInput = (0, _jquery2.default)('<input id="contact"></input>');
+    var infoContactElementInput = (0, _jquery2.default)('<input id="contact" placeholder="Иванов Иван Иванович"></input>');
+
+    (0, _jquery2.default)(infoContactElementInput).focusout(function (e) {
+        if (_jquery2.default.trim(infoContactElementInput.val()) != "") {
+            disableWarningInput(infoContactElementInput);
+        } else {
+            enableWarningInput(infoContactElementInput);
+        }
+    });
 
     infoNumberElementLabel.html(infoData.number.name);
     infoPhoneElementLabel.html(infoData.phone.name);
@@ -11188,21 +11225,31 @@ function getProductInfo() {
 }
 
 function getClientInfo() {
-    return {
-        "number": (0, _jquery2.default)("#number").val(),
-        "phone": (0, _jquery2.default)("#phone").val(),
-        "contact": (0, _jquery2.default)("#contact").val() };
-
+    return { "number": (0, _jquery2.default)("#number").val(), "phone": (0, _jquery2.default)("#phone").val(), "contact": (0, _jquery2.default)("#contact").val() };
 }
 
+function isFormValid() {
+    if ((0, _jquery2.default)("#phone").hasClass("input-warning") || _jquery2.default.trim((0, _jquery2.default)("#phone").val()) == "") {
+        return false;
+    }
+    if ((0, _jquery2.default)("#contact").hasClass("input-warning") || _jquery2.default.trim((0, _jquery2.default)("#contact").val()) == "") {
+        return false;
+    }
+
+    return true;
+}
 
 function onSendEmail() {
-    var message = {
-        "product": getProductInfo(),
-        "client": getClientInfo() };
+    if (isFormValid()) {
+        var message = {
+            "product": getProductInfo(),
+            "client": getClientInfo() };
 
 
-    (0, _message2.default)(message);
+        (0, _message2.default)(message);
+    } else {
+        alert("Форма заполнена некорректно");
+    }
 }
 
 function initOrder() {
@@ -11217,13 +11264,14 @@ function () {
 };
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = {"title":"Быстрая покупка карниза","body":[{"name":"Диаметр труб","value":["16 мм"]},{"name":"Цвет карниза","value":["Антик","Матовый хром"]},{"name":"Тип труб","value":["Гладки","Витье"]},{"name":"Длина","value":["1,6 м","1,8 м","2,0 м","2,4 м","2,8 м","3,0 м","3,2 м","3,6 м","4,0 м","Не знаю"]},{"name":"Кол-во рядов","value":["Одинарный","Двойной"]},{"name":"Тип колец","value":["Без колец","Металлические кольца","Бесшумные кольца"]}],"info":{"number":{"name":"Количество","required":0},"phone":{"name":"Телефон","required":1},"contact":{"name":"Контактное лицо","required":1}},"bottom":{"name":"Купить карниз"}}
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11260,7 +11308,7 @@ function (message) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11450,7 +11498,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -11461,7 +11509,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -11490,7 +11538,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11988,7 +12036,7 @@ var objectKeys = Object.keys || function (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = now
@@ -11999,20 +12047,20 @@ function now() {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });var _jquery = __webpack_require__(0);var _jquery2 = _interopRequireDefault(_jquery);
 
-var _whatWeOffer = __webpack_require__(15);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);
-var _liders = __webpack_require__(16);var _liders2 = _interopRequireDefault(_liders);
-var _karnizy = __webpack_require__(17);var _karnizy2 = _interopRequireDefault(_karnizy);
-var _catalog = __webpack_require__(18);var _catalog2 = _interopRequireDefault(_catalog);
-var _installation = __webpack_require__(19);var _installation2 = _interopRequireDefault(_installation);
-var _aboutUs = __webpack_require__(20);var _aboutUs2 = _interopRequireDefault(_aboutUs);
+var _whatWeOffer = __webpack_require__(16);var _whatWeOffer2 = _interopRequireDefault(_whatWeOffer);
+var _liders = __webpack_require__(17);var _liders2 = _interopRequireDefault(_liders);
+var _karnizy = __webpack_require__(18);var _karnizy2 = _interopRequireDefault(_karnizy);
+var _catalog = __webpack_require__(19);var _catalog2 = _interopRequireDefault(_catalog);
+var _installation = __webpack_require__(20);var _installation2 = _interopRequireDefault(_installation);
+var _aboutUs = __webpack_require__(21);var _aboutUs2 = _interopRequireDefault(_aboutUs);
 
-var _common = __webpack_require__(21);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _common = __webpack_require__(22);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function initAboutUs() {
     var h2 = (0, _jquery2.default)("<h2></h2>").html(_aboutUs2.default.header);
@@ -12126,43 +12174,43 @@ function () {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Что мы предлагаем","content":[{"tag":"div","children":[{"tag":"p","children":"","text":"Шторы – традиционный и самый популярный способ оформления окна. Гардины открывают дизайнеру практически неограниченные возможности для творчества."},{"tag":"p","children":"","text":"Итоговая цена штор зависит от нескольких факторов:"},{"tag":"div","children":[{"tag":"ol","children":[{"tag":"li","children":"","text":"Стоимость материалов."},{"tag":"li","children":"","text":"Количество используемой ткани."},{"tag":"li","children":"","text":"Сложность исполнения комплекта."},{"tag":"li","children":"","text":"Услуги дизайнера."},{"tag":"li","children":"","text":"Дополнительные украшения (подхваты, кисти, металлические люверсы и другие)."}]}],"text":""}],"text":""},{"tag":"h3","children":"","text":"Ткани для штор"},{"tag":"p","children":"","text":"Выбор тканей для штор очень широк. Вы можете купить плотные гардины из тяжелого бархата либо ограничиться легкими занавесками из органзы или тюля. Выбор зависит от дизайна комнаты и назначения штор: рассеивать солнечный свет или обеспечивать приватность в темное время суток.В продаже встречаются как натуральные, так и искусственные материалы.Последние считаются более практичными, но ткань из натуральных волокон зачастую превосходит их по эстетическим качествам– правда, и по цене тоже."},{"tag":"h3","children":"","text":"Расход ткани для штор"},{"tag":"p","children":"","text":"Ширина оконного проема, высота потолка и желаемая глубина и количество складок определяют, насколько много ткани для штор вам понадобится купить. Увеличение любого из этих параметров сказывается на расходе ткани и автоматически повышает цену готовой композиции."},{"tag":"h3","children":"","text":"Пошив штор"},{"tag":"p","children":"","text":"Обработка срезов штор, их подготовка к размещению на карнизе, выполнение драпировок и подборов – все это также оплачивается отдельно. Шторы на люверсах или специальной шторной ленте ложатся аккуратными равномерными складками и легко раздвигаются. Иногда швеи закладывают глубокие складки вручную: это дороже, но придает плотным гардинам впечатляющий вид."},{"tag":"h3","children":"","text":"Дизайн штор"},{"tag":"p","children":"","text":"В простых минималистичных интерьерах шторы чаще всего представляют собой несколько собранных в вертикальные складки полотнищ ткани. Однако вы можете купить комплект штор более сложного и изысканного вида: с декоративными драпировками, подборами, комбинацией нескольких материалов.Зачастую такой дизайн разрабатывается индивидуально для каждого заказчика.В своем классическом варианте шторы подвешены к карнизу только сверху, однако в последнее время стали популярными шторы из тюля, верхние и нижние края которых закреплены на направляющих.Вертикальные складки на них получаются более четкими.Такие шторы можно сдвигать в сторону,как складную ширму.Еще более экзотическим вариантом являются перекрещенные шторы– комплект из двух полотнищ, перекрещивающих друг друга по диагонали."},{"tag":"h3","children":"","text":"Как заказать шторы"},{"tag":"p","children":"","text":"На этой странице каталога размещены контактные данные компаний, у которых вы можете купить готовые шторы либо заказать пошив штор по индивидуальному эскизу. В штате таких мастерских зачастую есть и художник, который поможет вам разработать подходящий дизайн штор.Чтобы задать дополнительные вопросы и оформить заявку на пошив штор, просто свяжитесь с продавцом по указанным телефонам."}]}
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Лидеры продаж","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Супер карниз"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Карнизы","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы бело-черные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 16 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Карнизы 25 диаметр кованные"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Аксессуары кованных карнизов"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Потолочные карнизы"}]},{"tag":"p","className":"card-item-price","text":"От 100р - 200р"},{"tag":"p","className":"card-item-info","text":"15 моделей из разных стран"}]}]}
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Каталог товаров","content":[{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Шторы"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]},{"tag":"div","className":"card-item","children":[{"tag":"div","className":"img-wrapper","children":[{"tag":"a","href":"","children":[{"tag":"div","className":"img-shadow"},{"tag":"img","src":"dist/images/shtory/18.jpg"}]}]},{"tag":"h2","className":"card-item-name","children":[{"tag":"a","href":"","text":"Каталог работ"}]},{"tag":"p","className":"card-item-info","text":"100 р"}]}]}
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Установка","content":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Быстро"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Надежно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Недорого"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Качественно"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Вам понравится"}]}]},{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item","children":[{"tag":"div","className":"attributes-item-icon"},{"tag":"div","className":"attributes-item-description","text":"Мы вас любим"}]}]}]}
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = {"header":"Все для вашего окна, найдете у нас!","content":[{"tag":"ul","className":"about-us-features-list","children":[{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Монтаж карниза для штор от 10р."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"При заказе: карниз+установка, приятная скидка."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Установка от 10р. в любое удобное для вас время и день."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Аккуратная установка любого металлического или потолочного карниза в эркерном исполнении (трапеция,угловой) под различным углом."}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Доставка, по Минску, бесплатно!"}]},{"tag":"li","className":"about-us-features-list-item","children":[{"tag":"span","text":"Срочная установка, выполним заказ в кратчайший срок."}]}]}]}
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12194,10 +12242,228 @@ function getDomTreeELement(item, parentElement) {
 getDomTreeELement = getDomTreeELement;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
+/***/ }),
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(console) {Object.defineProperty(exports, "__esModule", { value: true });var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {return typeof obj;} : function (obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};exports.default = function () {
+
+    var ArgumentError = function ArgumentError(argument) {
+        this.name = 'Argument Error';
+        this.message = argument + ' is not defined.';
+    };
+
+    ArgumentError.prototype = new Error();
+    ArgumentError.prototype.constructor = ArgumentError;
+
+    String.prototype.insertAt = function (index, value) {
+        return this.slice(0, index) + value + this.slice(index);
+    };
+
+    String.prototype.replaceAt = function (index, value) {
+        return this.substr(0, index) + value + this.substr(index + value.length);
+    };
+
+    KeyboardEvent.prototype.isMetaChangerValue = function () {
+        // Checks
+        if (this.metaKey || this.ctrlKey) {
+            if (['X', 'V', 'Z', 'Y'].indexOf(String.fromCharCode(this.which)) > -1) {
+
+                return true;
+            }
+        }
+
+        // Defaul return
+        return false;
+    };
+
+    KeyboardEvent.prototype.dataType = function () {
+        // Get value
+        var value = String.fromCharCode(this.which);
+
+        // Checks
+        if (this.isMetaChangerValue())
+        return 'value';else
+        if (this.metaKey || this.altKey || this.ctrlKey)
+        return 'meta';else
+        if (/[0-9]/.test(value))
+        return 'number';else
+        if (/[a-z]/i.test(value))
+        return 'character';else
+        if (/\s/.test(value))
+        return 'space';else
+        if (/[\b]/.test(value))
+        return 'backspace';else
+
+        return undefined;
+    };
+
+    Element.prototype.cursorPosition = function () {
+        if (this.createTextRange) {
+            var r = document.selection.createRange().duplicate();
+            r.moveEnd('character', this.value.length);
+            if (r.text == '') {
+                return this.value.length;
+            }
+            return this.value.lastIndexOf(r.text);
+        } else {
+            return this.selectionStart;
+        }
+    };
+
+    Element.prototype.setCursorPosition = function (position) {
+        if (this.createTextRange) {
+            var range = this.createTextRange();
+            range.move('character', position);
+            range.select();
+        } else {
+            if (this.selectionStart) {
+                this.focus();
+                this.setSelectionRange(position, position);
+            } else
+            this.focus();
+        }
+    };
+
+    Element.prototype._updateValue = function (value, index) {
+        // Add current and check next
+        if (index < this.value.length) {
+            this.value = this.value.replaceAt(index, value);
+        } else {
+
+            this.value = this.value.insertAt(index, value);
+        }
+    };
+
+    Element.prototype._maskEvent = function () {
+        // Non mask element
+        if (this._mask == undefined)
+        throw new Error('mask not defined');
+
+        // First time
+        if (this._maskEventDelegated == undefined)
+        this._maskEventDelegated = false;
+
+        // Checks if the event has been delegated
+        if (this._maskEventDelegated)
+        return;
+
+        // Live Change
+        this.addEventListener('keydown', function (e) {
+
+            var el = e.target,
+            nextIndex = el.cursorPosition(),
+            typedValue = String.fromCharCode(e.which),
+            patternValue = el._mask.pattern[nextIndex],
+            eventDataType = e.dataType();
+
+            if (['number', 'character'].indexOf(eventDataType) > -1 && patternValue != undefined) {
+
+                // While has a delimiter
+                while (true) {
+                    // Update pattern
+                    patternValue = el._mask.pattern[nextIndex];
+
+                    // Pattern Value
+                    if (['N', 'C'].indexOf(patternValue.toUpperCase()) == -1) {
+                        el._updateValue(patternValue, nextIndex);
+                        nextIndex++;
+                    } else if (patternValue.toUpperCase() == eventDataType[0].toUpperCase()) {
+                        el._updateValue(typedValue, nextIndex);
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+
+                // Set Positions
+                el.setCursorPosition(nextIndex + 1);
+            }
+
+            // Prevent Default
+            if (eventDataType != 'backspace' && eventDataType != 'meta')
+            e.preventDefault();
+        });
+
+
+        // Set delegated
+        this._maskEventDelegated = true;
+    };
+
+    Element.prototype.masked = function () {
+        // Non mask element
+        if (this._mask == undefined)
+        throw new Error('mask not defined');
+
+        // Checks
+        return this.value.length == this._mask.pattern.length;
+    };
+
+    Element.prototype.maskItWith = function (pattern, options) {
+        // Checks pattern
+        if (pattern == undefined || pattern == '')
+        throw new ArgumentError('pattern');
+
+        // Default options
+        if (options == undefined || (typeof options === 'undefined' ? 'undefined' : _typeof(options)) != 'object')
+        options = {};
+
+        // Set pattern
+        options.pattern = pattern;
+
+        // Set Mask
+        this._mask = options;
+
+        // Delegate Event
+        this._maskEvent();
+    };
+
+    Element.prototype.limitCharactersIn = function (limit) {
+        // Checks limit
+        if (isNaN(limit) || limit < 0)
+        throw new Error('limit must be a number greater than zero');
+
+        // Set limit
+        this._limit = limit;
+
+        // Live Change
+        this.addEventListener('keydown', function (e) {
+            var eventDataType = e.dataType();
+
+            console.log(e.target.value);
+
+            // Checks size
+            if (eventDataType == 'value' || e.target.value.length >= e.target._limit && ['number', 'character', 'space'].indexOf(eventDataType) > -1)
+            e.preventDefault();
+
+        });
+
+    };
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
 /***/ })
 /******/ ]);
+//# sourceMappingURL=app.js.map
