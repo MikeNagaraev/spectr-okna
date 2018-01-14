@@ -75,13 +75,16 @@ const plugins = [
         {
             from: "./static/images/",
             to: "./images/"
-        }, 
+        },
         {
             from: "./font-awesome",
             to: "./font-awesome"
         }, {
             from: "./index.php",
             to: "index.php"
+        }, {
+            from: path.resolve(appPath, "catalog.html"),
+            to: "catalog.html"
         }
     ]),
     new ExtractTextPlugin(outputCssFile)

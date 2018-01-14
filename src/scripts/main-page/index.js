@@ -7,7 +7,7 @@ import catalogJson from "./jsons/catalog.json";
 import installationJson from "./jsons/installation.json";
 import aboutUsJson from "./jsons/aboutUs.json";
 
-import {getDomTreeELement} from "../common";
+import {getDomTreeElement} from "../common";
 
 function initAboutUs() {
     let h2 = $("<h2></h2>").html(aboutUsJson.header);
@@ -17,7 +17,7 @@ function initAboutUs() {
     let content = aboutUsJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -34,7 +34,7 @@ function initCatalog() {
     let content = catalogJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -51,7 +51,7 @@ function initKarnizy() {
     let content = karnizyJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -68,7 +68,7 @@ function initInstallation() {
     let content = installationJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -85,7 +85,7 @@ function initLiders() {
     let content = lidersJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -102,7 +102,7 @@ function initWhatWeOffer() {
     let content = whatWeOfferJson.content;
 
     content.forEach((item, i) => {
-        let element = getDomTreeELement(item);
+        let element = getDomTreeElement(item);
         contentElements.push(element);
     });
 
@@ -111,7 +111,7 @@ function initWhatWeOffer() {
     });
 }
 
-export default() => {
+export default () => {
     initAboutUs();
     initCatalog();
     initKarnizy();

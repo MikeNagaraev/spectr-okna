@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spectr-Okna</title>
+    <link rel="icon" type="image/png" href="images/logo/logo.jpg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link href="css/app.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- begin Header -->
+    <div class="rainbow">
+        <img src="images/rainbow_1.png" alt="">
+    </div>
+    <div class="wrapper">
+        <header class="header-site">
+            <div class="header-site-time">
+                <p>
+                    Прием звонков:
+                    <br/>
+                    <span class="work-time">8:00-22:00</span>
+                </p>
+            </div>
+            <div class="header-site-logo">
+                <a href="/" class="root-page">
+                    <img src="images/logo/logo_black.jpg" alt="">
+                </a>
+            </div>
+            <div class="header-site-contacts">
+                <p class="header-site-contacts-container">
+                    Заказ по номеру:
+                    <br/>
+                    <div class="phone-number-container">
+                        <span class="phone-number">+375-29-676-49-64</span>
+                        <span class="icon viber"></span>
+                    </div>
+                </p>
+                <button class="button button-order" id="button-order">
+                    Заказать
+                </button>
+            </div>
+        </header>
+        <nav class="navigation-site">
+            <div>
+                <a href="#">Шторы</a>
+            </div>
+            <div>
+                <a href="#">Карнизы</a>
+            </div>
+            <div>
+                <a href="#">Работы</a>
+            </div>
+            <div>
+                <a href="#">Отзывы</a>
+            </div>
+            <div>
+                <a href="#">Контакты</a>
+            </div>
+        </nav>
+    </div>
+    <!-- end Header -->
+
+    <main class="catalog-page">
+        <!-- Dynamic insertion -->
+    </main>
+
+
+    <!-- begin Order Popup -->
+    <div class="order-popup">
+        <div class="order-popup-window">
+            <div class="order-popup-header">
+                <div class="order-popup-close" id="order-popup-close">
+                    X
+                </div>
+            </div>
+            <div class="order-popup-content">
+                <div class="order-popup-content-title">
+                    <h2>
+                        <!-- Dynamic insertion -->
+                    </h2>
+                </div>
+                <div class="order-popup-content-body">
+                    <div class="container">
+                        <!-- Dynamic insertion -->
+                    </div>
+                </div>
+            </div>
+            <div class="order-popup-bottom">
+                <button class="order-popup-button button-order" id="order-popup-button">
+                    <span>
+                        Купить карниз
+                    </span>
+                    <div class="icon icon-loader" id="icon-order-loader">
+                        <img src="images/icons/loader.gif" alt="">
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end Order Popup -->
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript" src="js/app.min.js"></script>
+</body>
+
+</html>

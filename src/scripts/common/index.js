@@ -1,13 +1,13 @@
 import $ from "jquery";
 
-function getDomTreeELement(item, parentElement) {
+function getDomTreeElement(item, parentElement) {
     let element = document.createElement(item.tag);
     if (item.text) {
         $(element).html(item.text);
     }
     if (item.children) {
         item.children.forEach((child) => {
-            $(element).append(getDomTreeELement(child, element))
+            $(element).append(getDomTreeElement(child, element))
         });
     }
     if (item.className) {
@@ -23,4 +23,4 @@ function getDomTreeELement(item, parentElement) {
     return element;
 }
 
-export {getDomTreeELement};
+export {getDomTreeElement};
