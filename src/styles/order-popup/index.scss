@@ -2,6 +2,8 @@ $order-popup-background: #ffffff;
 $order-popup-width-sm: 90%;
 $order-popup-width: 40%;
 $order-popup-height: 450px;
+$order-close-button-size: 30px;
+
 @keyframes animatebottom {
     from {
         bottom: -300px;
@@ -31,7 +33,6 @@ $order-popup-height: 450px;
 
     &-window {
         width: $order-popup-width-sm;
-        max-height: 100%;
         margin: auto;
         padding: 0 0 20px 20px;
         background: $order-popup-background;
@@ -51,7 +52,6 @@ $order-popup-height: 450px;
     &-header {
         clear: both;
     }
-    $order-close-button-size: 30px;
 
     &-close {
         float: right;
@@ -88,7 +88,11 @@ $order-popup-height: 450px;
 
                 &-name {
                     align-self: center;
-                    flex: 3;
+                    flex: 4;
+                    font-weight: bold;
+                    &:after {
+                        content: ':';
+                    }
                     @include respond-to(tablet) {
                         flex: 2;
                     }
@@ -120,13 +124,15 @@ $order-popup-height: 450px;
 
                 & > div {
                     margin: 5px 0;
+
                     @include respond-to(tablet) {
                         margin: 0;
                     }
                 }
 
                 & > div:not(:first-child) {
-                    margin: 0;
+                    margin-left: 0;
+                    margin-right: 0;
                     @include respond-to(tablet) {
                         margin-left: 20px;
                     }
@@ -155,15 +161,26 @@ $order-popup-height: 450px;
                 }
 
                 label {
+                    display: inline-block;
                     width: 100%;
+                    font-weight: bold;
+                    padding-bottom: 5px;
+                    &:after {
+                        content: ':';
+                    }
                 }
 
                 &-number {
-                    flex: 1;
+                    width: 30%;
+                    @include respond-to(tablet) {
+                        flex: 1;
+                    }
                 }
 
                 &-phone {
-                    flex: 2;
+                     @include respond-to(tablet) {
+                         flex: 2;
+                     }
                 }
 
                 &-contact {
