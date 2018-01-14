@@ -1,27 +1,31 @@
-import webpack from 'webpack';
-import path from 'path';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from "webpack";
+import path from "path";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { manual } from "html-webpack-plugin/lib/chunksorter";
 
-const appPath = path.resolve(__dirname, 'src');
-const nodePath = path.resolve(__dirname, 'node_modules');
-const scriptsPath = path.resolve(appPath, 'scripts');
-const stylesPath = path.resolve(appPath, 'styles');
+const appPath = path.resolve(__dirname, "src");
+const nodePath = path.resolve(__dirname, "node_modules");
+const scriptsPath = path.resolve(appPath, "scripts");
+const stylesPath = path.resolve(appPath, "styles");
 
-const distPath = path.resolve(__dirname, 'dist');
+const distPath = path.resolve(__dirname, "dist");
 
-const scriptsRoot = path.resolve(scriptsPath, 'app.js');
-const stylesRoot = path.resolve(stylesPath, 'app.scss');
+const scriptsRoot = path.resolve(scriptsPath, "app.js");
+const stylesRoot = path.resolve(stylesPath, "app.scss");
+
+const outputJsFile = "js/app.min.js";
+const outputCssFile = "css/app.min.css";
 
 const loaders = [
     {
         test: /\.js$/,
         exclude: [nodePath],
         use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-                presets: ['env']
+                presets: ["env"]
             }
         }
     }, {
@@ -49,37 +53,38 @@ const loaders = [
         include: [
             stylesPath
         ],
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
     }, {
         test: /\.(eot|svg|ttf)$/,
-        loader: 'url-loader?name=static/fonts/**/[name].[ext]'
+        loader: "url-loader?name=static/fonts/**/[name].[ext]"
     }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'url-loader?name=static/images/[name].[ext]'
+        loader: "url-loader?name=static/images/[name].[ext]"
     }, {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: "json-loader"
     }
 ];
 
 const plugins = [
     new HtmlWebpackPlugin({
-        template: 'index.html',
-        inject: 'body'
+        template: path.resolve(appPath, "index.html"),
+        inject: "body"
     }),
     new CopyWebpackPlugin([
         {
-            from: './static/images/',
-            to: './images/'
+            from: "./static/images/",
+            to: "./images/"
+        }, 
+        {
+            from: "./font-awesome",
+            to: "./font-awesome"
         }, {
-            from: './index.html',
-            to: 'index.html'
-        }, {
-            from: './font-awesome',
-            to: './font-awesome'
+            from: "./index.php",
+            to: "index.php"
         }
     ]),
-    new ExtractTextPlugin('css/app.min.css')
+    new ExtractTextPlugin(outputCssFile)
 ];
 
 export default function(env) {
@@ -89,13 +94,13 @@ export default function(env) {
         ],
         output: {
             path: distPath,
-            filename: 'js/app.js'
+            filename: outputJsFile
         },
         resolve: {
-            extensions: ['.js', '.scss', '.css']
+            extensions: [".js", ".scss", ".css"]
         },
-        watch: true,
-        devtool: 'source-map',
+        // watch: true,
+        devtool: "source-map",
         devServer: {
             contentBase: distPath, // for heroku
             compress: true,
@@ -106,9 +111,9 @@ export default function(env) {
         },
         node: {
             console: true,
-            fs: 'empty',
-            net: 'empty',
-            tls: 'empty'
+            fs: "empty",
+            net: "empty",
+            tls: "empty"
         },
         plugins: plugins
     };
