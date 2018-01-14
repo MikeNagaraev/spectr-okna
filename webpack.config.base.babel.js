@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const appPath = path.resolve(__dirname, 'src');
 const nodePath = path.resolve(__dirname, 'node_modules');
@@ -16,7 +17,7 @@ const stylesRoot = path.resolve(stylesPath, 'app.scss');
 const loaders = [
     {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: [nodePath],
         use: {
             loader: 'babel-loader',
             options: {
@@ -27,7 +28,7 @@ const loaders = [
         test: /\.(sass|scss)$/,
         exclude: [nodePath],
         include: [
-            nodePath, stylesPath
+            stylesPath
         ],
         use: ExtractTextPlugin.extract({
             use: [
@@ -46,7 +47,7 @@ const loaders = [
         test: /\.css$/,
         exclude: [nodePath],
         include: [
-            nodePath, stylesPath
+            stylesPath
         ],
         use: ['style-loader', 'css-loader']
     }, {
@@ -59,7 +60,27 @@ const loaders = [
         test: /\.json$/,
         loader: 'json-loader'
     }
-]
+];
+
+const plugins = [
+    new HtmlWebpackPlugin({
+        template: 'index.html',
+        inject: 'body'
+    }),
+    new CopyWebpackPlugin([
+        {
+            from: './static/images/',
+            to: './images/'
+        }, {
+            from: './index.html',
+            to: 'index.html'
+        }, {
+            from: './font-awesome',
+            to: './font-awesome'
+        }
+    ]),
+    new ExtractTextPlugin('css/app.min.css')
+];
 
 export default function(env) {
     const config = {
@@ -76,7 +97,7 @@ export default function(env) {
         watch: true,
         devtool: 'source-map',
         devServer: {
-            contentBase: env.PROD ? __dirname : __dirname, // for heroku
+            contentBase: distPath, // for heroku
             compress: true,
             port: 3000
         },
@@ -89,22 +110,7 @@ export default function(env) {
             net: 'empty',
             tls: 'empty'
         },
-        plugins: [
-            new CopyWebpackPlugin([
-                {
-                    from: './static/images/',
-                    to: './images/'
-                }, {
-                    from: './index.html',
-                    to: 'index.html'
-                }, {
-                    from: './font-awesome',
-                    to: './font-awesome'
-                }
-            ]),
-            new ExtractTextPlugin('css/app.min.css'),
-            // new webpack.optimize.UglifyJsPlugin()
-        ]
+        plugins: plugins
     };
     return config;
 };

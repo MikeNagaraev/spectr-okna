@@ -14,7 +14,7 @@
                         "className": "img-shadow"
                     }, {
                         "tag": "img",
-                        "src": "dist/images/shtory/18.jpg"
+                        "src": "images/shtory/18.jpg"
                     }]
                 }]
             },
@@ -47,7 +47,7 @@
                         "className": "img-shadow"
                     }, {
                         "tag": "img",
-                        "src": "dist/images/shtory/18.jpg"
+                        "src": "images/shtory/18.jpg"
                     }]
                 }]
             },
